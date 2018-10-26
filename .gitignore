@@ -56,3 +56,4 @@ fabric.properties
 /logs/
 /target/
 /HackDocsBot.iml
+/.idea/
