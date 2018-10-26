@@ -89,6 +89,12 @@
             <version>2.1.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.frogermcs.gactions</groupId>
+            <artifactId>gactions</artifactId>
+            <version>0.2.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
