@@ -1,0 +1,7 @@
+[
+  {
+    "id": "redeploy-webhook",
+    "execute-command": "/home/HackDocsBot/deploy.sh",
+    "command-working-directory": "/home/HackDocsBot"
+  }
+]
