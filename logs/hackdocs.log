@@ -1,0 +1,157 @@
+23:33:20.892 [main] INFO  com.hackdocs.HackDocsApplication Starting HackDocsApplication on wh0105635.local with PID 16753 (/Users/yuriy.dorofeev/it/HackDocsBot/target/classes started by yuriy.dorofeev in /Users/yuriy.dorofeev/it/HackDocsBot)
+23:33:20.895 [main] INFO  com.hackdocs.HackDocsApplication No active profile set, falling back to default profiles: default
+23:33:20.934 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@f5ac9e4: startup date [Fri Oct 26 23:33:20 MSK 2018]; root of context hierarchy
+23:33:21.865 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$da37ab69] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+23:33:22.216 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer Tomcat initialized with port(s): 8080 (http)
+23:33:22.229 [main] INFO  o.a.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+23:33:22.238 [main] INFO  o.a.catalina.core.StandardService Starting service [Tomcat]
+23:33:22.238 [main] INFO  o.a.catalina.core.StandardEngine Starting Servlet Engine: Apache Tomcat/8.5.34
+23:33:22.242 [localhost-startStop-1] INFO  o.a.c.core.AprLifecycleListener The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/yuriy.dorofeev/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+23:33:22.343 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext
+23:33:22.343 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader Root WebApplicationContext: initialization completed in 1409 ms
+23:33:22.407 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'characterEncodingFilter' to: [/*]
+23:33:22.407 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+23:33:22.407 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'httpPutFormContentFilter' to: [/*]
+23:33:22.408 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'requestContextFilter' to: [/*]
+23:33:22.408 [localhost-startStop-1] INFO  o.s.b.w.s.DelegatingFilterProxyRegistrationBean Mapping filter: 'springSecurityFilterChain' to: [/*]
+23:33:22.408 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean Servlet dispatcherServlet mapped to [/]
+23:33:22.441 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception; nested exception is org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Failed to determine a suitable driver class
+23:33:22.442 [main] INFO  o.a.catalina.core.StandardService Stopping service [Tomcat]
+23:33:22.458 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+23:33:22.463 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+23:33:46.500 [main] INFO  com.hackdocs.HackDocsApplication Starting HackDocsApplication on wh0105635.local with PID 16758 (/Users/yuriy.dorofeev/it/HackDocsBot/target/classes started by yuriy.dorofeev in /Users/yuriy.dorofeev/it/HackDocsBot)
+23:33:46.504 [main] INFO  com.hackdocs.HackDocsApplication No active profile set, falling back to default profiles: default
+23:33:46.539 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6dc17b83: startup date [Fri Oct 26 23:33:46 MSK 2018]; root of context hierarchy
+23:33:47.781 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6395b93f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+23:33:48.062 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer Tomcat initialized with port(s): 8080 (http)
+23:33:48.072 [main] INFO  o.a.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+23:33:48.078 [main] INFO  o.a.catalina.core.StandardService Starting service [Tomcat]
+23:33:48.078 [main] INFO  o.a.catalina.core.StandardEngine Starting Servlet Engine: Apache Tomcat/8.5.34
+23:33:48.081 [localhost-startStop-1] INFO  o.a.c.core.AprLifecycleListener The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/yuriy.dorofeev/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+23:33:48.166 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext
+23:33:48.166 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader Root WebApplicationContext: initialization completed in 1627 ms
+23:33:48.222 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'characterEncodingFilter' to: [/*]
+23:33:48.222 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+23:33:48.222 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'httpPutFormContentFilter' to: [/*]
+23:33:48.222 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'requestContextFilter' to: [/*]
+23:33:48.222 [localhost-startStop-1] INFO  o.s.b.w.s.DelegatingFilterProxyRegistrationBean Mapping filter: 'springSecurityFilterChain' to: [/*]
+23:33:48.223 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean Servlet dispatcherServlet mapped to [/]
+23:33:48.245 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaConfiguration': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception; nested exception is org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Failed to determine a suitable driver class
+23:33:48.246 [main] INFO  o.a.catalina.core.StandardService Stopping service [Tomcat]
+23:33:48.257 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+23:33:48.261 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+23:34:10.206 [main] INFO  com.hackdocs.HackDocsApplication Starting HackDocsApplication on wh0105635.local with PID 16764 (/Users/yuriy.dorofeev/it/HackDocsBot/target/classes started by yuriy.dorofeev in /Users/yuriy.dorofeev/it/HackDocsBot)
+23:34:10.209 [main] INFO  com.hackdocs.HackDocsApplication No active profile set, falling back to default profiles: default
+23:34:10.241 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1ea9f6af: startup date [Fri Oct 26 23:34:10 MSK 2018]; root of context hierarchy
+23:34:11.133 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer Tomcat initialized with port(s): 8080 (http)
+23:34:11.142 [main] INFO  o.a.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+23:34:11.149 [main] INFO  o.a.catalina.core.StandardService Starting service [Tomcat]
+23:34:11.149 [main] INFO  o.a.catalina.core.StandardEngine Starting Servlet Engine: Apache Tomcat/8.5.34
+23:34:11.153 [localhost-startStop-1] INFO  o.a.c.core.AprLifecycleListener The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/yuriy.dorofeev/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+23:34:11.211 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext
+23:34:11.211 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader Root WebApplicationContext: initialization completed in 970 ms
+23:34:11.263 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'characterEncodingFilter' to: [/*]
+23:34:11.263 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+23:34:11.263 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'httpPutFormContentFilter' to: [/*]
+23:34:11.263 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'requestContextFilter' to: [/*]
+23:34:11.263 [localhost-startStop-1] INFO  o.s.b.w.s.DelegatingFilterProxyRegistrationBean Mapping filter: 'springSecurityFilterChain' to: [/*]
+23:34:11.263 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean Servlet dispatcherServlet mapped to [/]
+23:34:11.283 [main] INFO  c.hackdocs.localization.Localization Load localization
+23:34:11.392 [main] INFO  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration 
+
+Using generated security password: 85b2881c-0566-4b1c-9aa4-9a4153e69b86
+
+23:34:11.508 [main] INFO  o.s.s.web.DefaultSecurityFilterChain Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@30865a90, org.springframework.security.web.context.SecurityContextPersistenceFilter@c0b41d6, org.springframework.security.web.header.HeaderWriterFilter@159e366, org.springframework.security.web.authentication.logout.LogoutFilter@d4ab71a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2bffa76d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@126be319, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6134ac4a, org.springframework.security.web.session.SessionManagementFilter@5d332969, org.springframework.security.web.access.ExceptionTranslationFilter@2fb68ec6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@b09fac1]
+23:34:11.558 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+23:34:11.700 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1ea9f6af: startup date [Fri Oct 26 23:34:10 MSK 2018]; root of context hierarchy
+23:34:11.753 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping Mapped "{[/api/v1/hello],methods=[GET]}" onto public java.lang.String com.hackdocs.controller.HelloController.helloWorld()
+23:34:11.757 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+23:34:11.757 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+23:34:11.772 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+23:34:11.772 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+23:34:11.876 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter Registering beans for JMX exposure on startup
+23:34:11.889 [main] INFO  o.a.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+23:34:11.913 [main] INFO  o.a.tomcat.util.net.NioSelectorPool Using a shared selector for servlet write/read
+23:34:11.924 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer Tomcat started on port(s): 8080 (http) with context path ''
+23:34:11.927 [main] INFO  com.hackdocs.HackDocsApplication Started HackDocsApplication in 1.94 seconds (JVM running for 2.472)
+23:34:14.564 [Thread-7] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1ea9f6af: startup date [Fri Oct 26 23:34:10 MSK 2018]; root of context hierarchy
+23:34:14.566 [Thread-7] INFO  o.s.j.e.a.AnnotationMBeanExporter Unregistering JMX-exposed beans on shutdown
+23:34:23.323 [main] INFO  com.hackdocs.HackDocsApplication Starting HackDocsApplication on wh0105635.local with PID 16768 (/Users/yuriy.dorofeev/it/HackDocsBot/target/classes started by yuriy.dorofeev in /Users/yuriy.dorofeev/it/HackDocsBot)
+23:34:23.327 [main] INFO  com.hackdocs.HackDocsApplication No active profile set, falling back to default profiles: default
+23:34:23.365 [main] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7722c3c3: startup date [Fri Oct 26 23:34:23 MSK 2018]; root of context hierarchy
+23:34:24.645 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer Tomcat initialized with port(s): 8080 (http)
+23:34:24.656 [main] INFO  o.a.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+23:34:24.667 [main] INFO  o.a.catalina.core.StandardService Starting service [Tomcat]
+23:34:24.667 [main] INFO  o.a.catalina.core.StandardEngine Starting Servlet Engine: Apache Tomcat/8.5.34
+23:34:24.671 [localhost-startStop-1] INFO  o.a.c.core.AprLifecycleListener The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/yuriy.dorofeev/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+23:34:24.742 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext
+23:34:24.743 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader Root WebApplicationContext: initialization completed in 1378 ms
+23:34:24.802 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'characterEncodingFilter' to: [/*]
+23:34:24.803 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+23:34:24.803 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'httpPutFormContentFilter' to: [/*]
+23:34:24.803 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean Mapping filter: 'requestContextFilter' to: [/*]
+23:34:24.803 [localhost-startStop-1] INFO  o.s.b.w.s.DelegatingFilterProxyRegistrationBean Mapping filter: 'springSecurityFilterChain' to: [/*]
+23:34:24.803 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean Servlet dispatcherServlet mapped to [/]
+23:34:24.825 [main] INFO  c.hackdocs.localization.Localization Load localization
+23:34:24.939 [main] INFO  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration 
+
+Using generated security password: 35ee301b-b44f-4a23-92a3-1e9232f00bbe
+
+23:34:25.049 [main] INFO  o.s.s.web.DefaultSecurityFilterChain Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@251ebf23, org.springframework.security.web.context.SecurityContextPersistenceFilter@2fb68ec6, org.springframework.security.web.header.HeaderWriterFilter@62577d6, org.springframework.security.web.authentication.logout.LogoutFilter@7668d560, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3add81c4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a772895, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@29b732a2, org.springframework.security.web.session.SessionManagementFilter@60b85ba1, org.springframework.security.web.access.ExceptionTranslationFilter@6548bb7d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2237bada]
+23:34:25.103 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+23:34:25.236 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7722c3c3: startup date [Fri Oct 26 23:34:23 MSK 2018]; root of context hierarchy
+23:34:25.271 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping Mapped "{[/api/v1/hello],methods=[GET]}" onto public java.lang.String com.hackdocs.controller.HelloController.helloWorld()
+23:34:25.275 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+23:34:25.276 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+23:34:25.291 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+23:34:25.292 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+23:34:25.386 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter Registering beans for JMX exposure on startup
+23:34:25.397 [main] INFO  o.a.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+23:34:25.420 [main] INFO  o.a.tomcat.util.net.NioSelectorPool Using a shared selector for servlet write/read
+23:34:25.428 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer Tomcat started on port(s): 8080 (http) with context path ''
+23:34:25.432 [main] INFO  com.hackdocs.HackDocsApplication Started HackDocsApplication in 2.333 seconds (JVM running for 2.883)
+23:34:37.688 [http-nio-0.0.0.0-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] Initializing Spring FrameworkServlet 'dispatcherServlet'
+23:34:37.689 [http-nio-0.0.0.0-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet FrameworkServlet 'dispatcherServlet': initialization started
+23:34:37.702 [http-nio-0.0.0.0-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet FrameworkServlet 'dispatcherServlet': initialization completed in 13 ms
+23:36:45.657 [Thread-8] INFO  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@7722c3c3: startup date [Fri Oct 26 23:34:23 MSK 2018]; root of context hierarchy
+23:36:45.659 [Thread-8] INFO  o.s.j.e.a.AnnotationMBeanExporter Unregistering JMX-exposed beans on shutdown
