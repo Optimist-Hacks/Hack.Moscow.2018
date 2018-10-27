@@ -26,7 +26,7 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
 
     private String handleInit(SessionState<VacationLogic.State> state) {
         changeState(state, State.FIRST_NAME);
-        return "Hello! You want to create vocation document. What is your name?";
+        return "Hello! You want to create vacation document. What is your name?";
     }
 
     private String handleFirstName(String text, SessionState<VacationLogic.State> state) {

@@ -1,7 +1,6 @@
 package com.hackdocs.service;
 
 import com.github.otopba.javarocketstart.RocketText;
-import com.hackdocs.Flow;
 import com.hackdocs.model.Request;
 import com.hackdocs.model.Response;
 import com.hackdocs.model.response.Payload;
@@ -9,6 +8,7 @@ import com.hackdocs.model.response.payload.Google;
 import com.hackdocs.model.response.payload.google.RichResponse;
 import com.hackdocs.model.response.payload.google.richResponse.Item;
 import com.hackdocs.model.response.payload.google.richResponse.item.SimpleResponse;
+import com.hackdocs.service.flow.Flow;
 import com.hackdocs.service.flow.FlowLogic;
 import com.hackdocs.service.logic.VacationLogic;
 import org.slf4j.Logger;
