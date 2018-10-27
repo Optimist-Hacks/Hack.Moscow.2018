@@ -1,24 +1,17 @@
 package com.hackdocs.model.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hackdocs.model.response.payload.Google;
-import com.hackdocs.model.response.payload.Message;
 import com.hackdocs.model.response.payload.Telegram;
 import lombok.Data;
-
-import java.util.Collections;
-import java.util.List;
 
 @Data
 public class Payload {
 
-    @JsonIgnore
     public Google google;
 
-    @JsonIgnore
     public Telegram telegram;
 
-    public List<Message> messages = Collections.singletonList(new Message("telegram"));
+//    public List<Message> messages = Collections.singletonList(new Message("telegram"));
 
 //    public String messages = "[\n" +
 //            "  {\n" +
