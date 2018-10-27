@@ -2,6 +2,7 @@ package com.hackdocs.controller;
 
 import com.hackdocs.ResponseHelper;
 import com.hackdocs.model.Request;
+import com.hackdocs.service.Logic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,36 +18,18 @@ public class GoogleController {
 
     private static Logger logger = LoggerFactory.getLogger(GoogleController.class);
     private final ResponseHelper responseHelper;
+    private final Logic logic;
 
     @Autowired
-    public GoogleController(ResponseHelper responseHelper) {
+    public GoogleController(ResponseHelper responseHelper, Logic logic) {
         this.responseHelper = responseHelper;
+        this.logic = logic;
     }
-
 
     @PostMapping("")
     public ResponseEntity<String> process(@RequestBody Request request) {
         logger.info("Receive google request payload = " + request);
-
-
-        String s = "{\n" +
-                "  \"payload\": {\n" +
-                "    \"google\": {\n" +
-                "      \"expectUserResponse\": true,\n" +
-                "      \"richResponse\": {\n" +
-                "        \"items\": [\n" +
-                "          {\n" +
-                "            \"simpleResponse\": {\n" +
-                "              \"textToSpeech\": \"this is a simple response\"\n" +
-                "            }\n" +
-                "          }\n" +
-                "        ]\n" +
-                "      }\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
-
-        return responseHelper.ok(s);
+        return responseHelper.ok(logic.processRequest(request));
     }
 
 }
