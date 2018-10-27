@@ -14,6 +14,14 @@ public class DateUtils {
     private static Logger logger = LoggerFactory.getLogger(DateUtils.class);
 
     public static String formatDate(String text) {
+        return format(text, "MM.dd.yyyy");
+    }
+
+    public static String formatTime(String text) {
+        return format(text, "HH:mm");
+    }
+
+    public static String format(String text, String format) {
         ISO8601DateFormat inputDateFormat = new ISO8601DateFormat();
         Date date;
         try {
@@ -23,7 +31,7 @@ public class DateUtils {
             return null;
         }
 
-        DateFormat outputDateFormat = new SimpleDateFormat("MM.dd.yyyy");
+        DateFormat outputDateFormat = new SimpleDateFormat(format);
         return outputDateFormat.format(date);
     }
 
