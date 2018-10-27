@@ -55,7 +55,7 @@ public class Logic {
                 switch (flow) {
                     case VOCATION:
                         sessionState = new SessionState(vocationLogic.getInitState(), vocationLogic);
-                        buildResponse(vocationLogic.processRequest(text, sessionState));
+                        response = vocationLogic.processRequest(text, sessionState);
                         break;
                 }
             }
