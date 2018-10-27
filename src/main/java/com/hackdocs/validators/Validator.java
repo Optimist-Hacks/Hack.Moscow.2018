@@ -1,35 +1,18 @@
 package com.hackdocs.validators;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
 
-    private static final Pattern firstNamePattern = Pattern.compile("[a-zA-Z][^#&<>\\\"~;$^%{}?]{1,20}$");
-    private static final Pattern secondNamePattern = Pattern.compile("[a-zA-Z][^#&<>\\\"~;$^%{}?]{1,20}$");
+    private static final Pattern namePattern = Pattern.compile("^[a-zA-Z][^#&<>\\\"~;$^%{}?]{1,20}$");
+    private static final Pattern sexPattern = Pattern.compile("^(male)|(female)|f|m|(girl)|(man)$");
 
-    public static boolean isValidFirstName(String firstName) {
-        Matcher matcher = firstNamePattern.matcher(firstName);
-
-        if (matcher.find()) {
-            return matcher.start() == 0;
-        } else {
-            return false;
-        }
-    }
-
-    public static boolean isValidSecondName(String secondName) {
-        Matcher matcher = secondNamePattern.matcher(secondName);
-
-        if (matcher.find()) {
-            return matcher.start() == 0;
-        } else {
-            return false;
-        }
+    public static boolean isValidName(String name) {
+        return namePattern.matcher(name.toLowerCase()).find();
     }
 
     public static boolean isValidSex(String sex) {
-        return true;
+        return sexPattern.matcher(sex.toLowerCase()).find();
     }
 
     public static boolean isValidDate(String date) {
