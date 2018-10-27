@@ -16,7 +16,7 @@ public class GoogleController {
 
     @PostMapping("")
     public void process(@RequestBody Request request) {
-        logger.info("Receive google request payload = " + request);
+        logger.info("Receive google request = " + request);
     }
 
 }
