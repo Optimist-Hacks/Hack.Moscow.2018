@@ -47,7 +47,7 @@ public class PdfService {
             for (int lineIndex = 0; lineIndex < field.getProperties().getNumbOfLines(); lineIndex++) {
                 over.beginText();
                 over.setFontAndSize(font, 10);
-                over.setTextMatrix(field.getProperties().getXCoord(), field.getProperties().getYCoord() + 15 * lineIndex);
+                over.setTextMatrix(field.getProperties().getXCoord(), field.getProperties().getYCoord() - 15 * lineIndex);
                 over.showText(field.getValue());
                 over.endText();
             }
