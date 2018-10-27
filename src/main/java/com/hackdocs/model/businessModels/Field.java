@@ -8,6 +8,11 @@ public class Field {
 
     FieldType type;
     String value;
-    FieldProperties coords;
+    FieldProperties properties;
 
+
+    public Field(FieldType type, FieldProperties properties) {
+        this.type = type;
+        this.properties = properties;
+    }
 }
