@@ -25,14 +25,17 @@ public class PdfService {
     private static final String OUT_FOLDER = "out_documents";
     private static final String PDF = "pdf";
 
-    public void fillDocument(Document document) {
+    public String fillDocument(Document document) {
         PdfStamper stamper = null;
         PdfReader reader;
         BaseFont font = null;
 
+
+        Path path = prepareDocumentPath();
+
         try {
             reader = new PdfReader(document.getFileLink()); // input PDF
-            stamper = new PdfStamper(reader, new FileOutputStream(prepareDocumentPath())); // output PDF
+            stamper = new PdfStamper(reader, new FileOutputStream(path.toString())); // output PDF
             font = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED); // set font
         } catch (IOException | DocumentException e) {
             logger.error("error", e);
@@ -58,9 +61,11 @@ public class PdfService {
         } catch (DocumentException | IOException e) {
             logger.error("error", e);
         }
+
+        return path.getFileName().toString();
     }
 
-    private String prepareDocumentPath() {
+    private Path prepareDocumentPath() {
         Path path = Paths.get(OUT_FOLDER);
         if (!Files.exists(path)) {
             try {
@@ -69,7 +74,7 @@ public class PdfService {
                 logger.error("Can' create folder", e);
             }
         }
-        return path.resolve(System.currentTimeMillis() + "." + PDF).toString();
+        return path.resolve(System.currentTimeMillis() + "." + PDF);
     }
 
     public Path getDocument(String path) {
