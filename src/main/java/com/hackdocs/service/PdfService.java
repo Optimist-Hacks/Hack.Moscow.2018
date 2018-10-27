@@ -66,7 +66,7 @@ public class PdfService {
         }
 
         String fileName = path.getFileName().toString();
-        document.setPdf(fileName);
+        document.setPdf("https://techdrive.pro/api/v1/pdf/" + fileName);
         return fileName;
     }
 
