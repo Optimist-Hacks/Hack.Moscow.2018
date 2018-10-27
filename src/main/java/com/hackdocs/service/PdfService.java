@@ -81,11 +81,11 @@ public class PdfService {
         String fileName = path.getFileName().toString();
         document.setPdf("https://techdrive.pro/api/v1/pdf/" + fileName);
 
-        Image image = pdfToImage("/home/HackDocsBot/out_documents/" + fileName);
-        String imageName = saveImage(image).getFileName().toString();
-        document.setPng("http://techdrive.pro/api/v1/pdf/" + imageName);
+        //Image image = pdfToImage("/home/HackDocsBot/out_documents/" + fileName);
+        //String imageName = saveImage(image).getFileName().toString();
+        //document.setPng("http://techdrive.pro/api/v1/pdf/" + imageName);
 
-        return imageName;
+        return fileName;
     }
 
     private ArrayList<String> fieldLines(Field field) {
@@ -149,7 +149,11 @@ public class PdfService {
         return path;
     }
 
-    private Image pdfToImage(String path) {
+    public static void main(String[] args) {
+        pdfToImage("src/main/resources/pdf/application.pdf");
+    }
+
+    private static Image pdfToImage(String path) {
 
         PDFDocument document = new PDFDocument();
         try {

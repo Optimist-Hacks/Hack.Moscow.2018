@@ -106,7 +106,7 @@ public class HotelFieldHandlerPlainText {
         if (Validator.isValidTime(text)) {
             changeState(session, HotelLogic.State.TERMINATED);
             session.getDocument().getFieldByType(DEPARTURE_TIME).setValue(text);
-            Image file = pdfService.fillDocument(session.getDocument());
+            String file = pdfService.fillDocument(session.getDocument());
             return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/pdf/%s", file);
         } else {
             return "This is not a time. Try again";
