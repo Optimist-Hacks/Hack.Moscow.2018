@@ -29,7 +29,7 @@ public abstract class FlowLogic<State extends Enum> {
 
     public abstract State getInitState();
 
-    public Image buildPDF(Session<State> session) {
+    public String buildPDF(Session<State> session) {
         return pdfService.fillDocument(session.getDocument());
     }
 

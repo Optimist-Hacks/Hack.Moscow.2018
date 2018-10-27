@@ -37,7 +37,7 @@ public class PdfService {
     private static final String PDF = "pdf";
     private static final String PNG = "png";
 
-    public Image fillDocument(Document document) {
+    public String fillDocument(Document document) {
         PdfStamper stamper = null;
         PdfReader reader;
         BaseFont font = null;
@@ -85,7 +85,7 @@ public class PdfService {
         String imageName = saveImage(image).getFileName().toString();
         document.setPng("http://techdrive.pro/api/v1/pdf/" + imageName);
 
-        return image;
+        return imageName;
     }
 
     private ArrayList<String> fieldLines(Field field) {
