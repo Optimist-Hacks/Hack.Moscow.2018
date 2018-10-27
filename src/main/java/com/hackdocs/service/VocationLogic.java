@@ -11,7 +11,7 @@ public class VocationLogic extends AbstractFlow<VocationLogic.State> {
             case INIT:
                 changeState(state, State.FIRST_NAME);
                 return "Hello! You want to create vocation document. What is your name?";
-            case LAST_NAME:
+            case FIRST_NAME:
                 changeState(state, State.LAST_NAME);
                 return "OK!";
         }
