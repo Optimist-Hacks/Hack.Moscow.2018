@@ -1,5 +1,6 @@
 package com.hackdocs.service.flow;
 
+import com.hackdocs.model.Request;
 import com.hackdocs.service.PdfService;
 import com.hackdocs.service.Session;
 import org.slf4j.Logger;
@@ -10,14 +11,14 @@ public abstract class FlowLogic<State extends Enum> {
 
     protected static Logger logger = LoggerFactory.getLogger(FlowLogic.class);
 
-    protected abstract String process(String text, Session<State> state);
+    protected abstract String process(Request request, Session<State> state);
 
     @Autowired
     private PdfService pdfService;
 
-    public String processRequest(String text, Session<State> state) {
+    public String processRequest(Request request, Session<State> state) {
         logger.info("Process state " + state);
-        return process(text, state);
+        return process(request, state);
     }
 
     public void changeState(Session<State> state, State newState) {

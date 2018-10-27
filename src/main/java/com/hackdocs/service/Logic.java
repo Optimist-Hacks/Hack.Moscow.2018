@@ -42,14 +42,14 @@ public class Logic {
     }
 
     public Response processRequest(Request request) {
-        String session = request.getSession();
-        logger.info("Session = " + session);
+        String sessionId = request.getSession();
+        logger.info("Session = " + sessionId);
 
         String response;
         if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME)) {
-            response = processWelcomeMessage(session);
+            response = processWelcomeMessage(sessionId);
         } else {
-            response = processDataMessage(request, session);
+            response = processDataMessage(request, sessionId);
         }
 
         if (RocketText.safeEqualsIgnoreCase(request.getOriginalDetectIntentRequest().getSource(), TELEGRAM)) {
@@ -68,7 +68,7 @@ public class Logic {
 
         if (currSession != null) {
             FlowLogic flow = currSession.getFlow();
-            response = flow.processRequest(queryText, currSession);
+            response = flow.processRequest(request, currSession);
         }
 
         if (RocketText.isEmpty(response)) {
