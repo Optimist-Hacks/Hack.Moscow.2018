@@ -3,6 +3,7 @@ package com.hackdocs.service;
 import com.github.otopba.javarocketstart.RocketText;
 import com.hackdocs.model.Request;
 import com.hackdocs.model.Response;
+import com.hackdocs.model.response.FollowupEventInput;
 import com.hackdocs.model.response.Payload;
 import com.hackdocs.model.response.payload.Google;
 import com.hackdocs.model.response.payload.Telegram;
@@ -113,13 +114,16 @@ public class Logic {
         RichResponse richResponse = new RichResponse(Collections.singletonList(item));
         Google google = new Google(true, richResponse);
         Payload payload = new Payload(google);
-        return new Response(payload);
+        FollowupEventInput followupEventInput = new FollowupEventInput();
+        followupEventInput.name = "Cell phone";
+        return new Response(payload, followupEventInput);
     }
 
     private Response buildTelegramResponse(String text) {
         Telegram telegram = new Telegram(text);
         Payload payload = new Payload(telegram);
-        return new Response(payload);
+        FollowupEventInput followupEventInput = new FollowupEventInput();
+        return new Response(payload, followupEventInput);
     }
 
     private String defaultWelcomeText() {

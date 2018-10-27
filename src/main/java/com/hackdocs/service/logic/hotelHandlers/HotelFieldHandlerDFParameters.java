@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
 import java.util.function.Predicate;
 
 import static com.hackdocs.model.businessModels.FieldType.*;
@@ -121,7 +122,7 @@ public class HotelFieldHandlerDFParameters {
         if (notEmprty.test(depTime)) {
             changeState(session, HotelLogic.State.TERMINATED);
             session.getDocument().getFieldByType(DEPARTURE_TIME).setValue(depTime);
-            String file = pdfService.fillDocument(session.getDocument());
+            Image file = pdfService.fillDocument(session.getDocument());
             COMPLETED_DOCUMENTS.add(session.getDocument());
             return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/pdf/%s", file);
         } else {

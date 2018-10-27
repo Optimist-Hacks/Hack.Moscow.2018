@@ -1,5 +1,6 @@
 package com.hackdocs.model;
 
+import com.hackdocs.model.response.FollowupEventInput;
 import com.hackdocs.model.response.Payload;
 import lombok.Data;
 
@@ -12,11 +13,12 @@ public class Response {
 //    List<FulfillmentMessage> fulfillmentMessages;
 //    String source;
 //    List<OutputContext> outputContexts;
-//    FollowupEventInput followupEventInput;
+FollowupEventInput followupEventInput;
 
 
-    public Response(Payload payload) {
+    public Response(Payload payload, FollowupEventInput followupEventInput) {
         this.payload = payload;
+        this.followupEventInput = followupEventInput;
     }
 
 }
