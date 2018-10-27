@@ -5,7 +5,7 @@ import com.github.otopba.javarocketstart.RocketText;
 public enum Flow {
 
     VACATION("VACATION"),
-    HOTEL("HOTEL CHECK IN");
+    HOTEL("HOTEL");
 
     public final String name;
 

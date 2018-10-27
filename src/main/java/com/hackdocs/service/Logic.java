@@ -11,6 +11,7 @@ import com.hackdocs.model.response.payload.google.richResponse.Item;
 import com.hackdocs.model.response.payload.google.richResponse.item.SimpleResponse;
 import com.hackdocs.service.flow.Flow;
 import com.hackdocs.service.flow.FlowLogic;
+import com.hackdocs.service.logic.HotelLogic;
 import com.hackdocs.service.logic.VacationLogic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +33,12 @@ public class Logic {
 
     private final VacationLogic vacationLogic;
 
+    private final HotelLogic hotelLogic;
+
     @Autowired
-    public Logic(VacationLogic vacationLogic) {
+    public Logic(VacationLogic vacationLogic, HotelLogic hotelLogic) {
         this.vacationLogic = vacationLogic;
+        this.hotelLogic = hotelLogic;
     }
 
     public Response processRequest(Request request) {
@@ -83,6 +87,9 @@ public class Logic {
                 switch (flow) {
                     case VACATION:
                         currSession = new Session(vacationLogic.getInitState(), vacationLogic);
+                        break;
+                    case HOTEL:
+                        currSession = new Session(hotelLogic.getInitState(), hotelLogic);
                         break;
                 }
             }
