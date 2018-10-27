@@ -44,16 +44,8 @@ public class GoogleController {
         return responseHelper.ok("{\n" +
                 "   \"payload\":{\n" +
                 "      \"telegram\":{\n" +
-                "         \"expectUserResponse\":true,\n" +
-                "         \"richResponse\":{\n" +
-                "            \"items\":[\n" +
-                "               {\n" +
-                "                  \"simpleResponse\":{\n" +
-                "                     \"textToSpeech\":\"Please call Alexander!!!\"\n" +
-                "                  }\n" +
-                "               }\n" +
-                "            ]\n" +
-                "         }\n" +
+                "         \"text\":\"You can read about *entities* [here](/docs/concept-entities).\",\n" +
+                "         \"parse_mode\":\"Markdown\"\n" +
                 "      }\n" +
                 "   }\n" +
                 "}");
