@@ -16,7 +16,6 @@ public class Google {
 
     public List<Message> messages = Collections.singletonList(new Message("google"));
 
-
 //    public String messages = "[\n" +
 //            "  {\n" +
 //            "    \"imageUrl\": \"http://images.math.cnrs.fr/IMG/png/section8-image.png\",\n" +
