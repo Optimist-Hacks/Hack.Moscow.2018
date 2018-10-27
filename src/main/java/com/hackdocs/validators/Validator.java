@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class Validator {
 
     private static final Pattern namePattern = Pattern.compile("^[a-zA-Z][^#&<>\\\"~;$^%{}?]{1,20}$");
-    private static final Pattern sexPattern = Pattern.compile("^(male)|(female)|f|m|(girl)|(man)$");
+    private static final Pattern sexPattern = Pattern.compile("^(male)|(female)|(f)|(m)|(girl)|(man)|(woman)$");
 
     public static boolean isValidName(String name) {
         return namePattern.matcher(name.toLowerCase()).find();

@@ -15,15 +15,16 @@ public class ValidatorTests {
 
     @Test
     public void validateSexTest() {
-        Assert.assertTrue(Validator.isValidName("male"));
-        Assert.assertTrue(Validator.isValidName("Male"));
-        Assert.assertTrue(Validator.isValidName("Girl"));
-        Assert.assertTrue(Validator.isValidName("Man"));
-        Assert.assertTrue(Validator.isValidName("F"));
-        Assert.assertTrue(Validator.isValidName("M"));
-        Assert.assertTrue(Validator.isValidName("m"));
-        Assert.assertTrue(Validator.isValidName("f"));
-        Assert.assertFalse(Validator.isValidName("ivan"));
+        Assert.assertTrue(Validator.isValidSex("male"));
+        Assert.assertTrue(Validator.isValidSex("Male"));
+        Assert.assertTrue(Validator.isValidSex("Girl"));
+        Assert.assertTrue(Validator.isValidSex("Man"));
+        Assert.assertTrue(Validator.isValidSex("F"));
+        Assert.assertTrue(Validator.isValidSex("M"));
+        Assert.assertTrue(Validator.isValidSex("m"));
+        Assert.assertTrue(Validator.isValidSex("f"));
+        Assert.assertTrue(Validator.isValidSex("woman"));
+        Assert.assertFalse(Validator.isValidSex("ivan"));
     }
 
 }
