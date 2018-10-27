@@ -5,6 +5,7 @@ public enum FieldType {
     NAME("name"),
     MIDDLENAME("middle name"),
     LASTNAME("last name"),
+    FAMILYNAME("family name"),
     ENTER_DATE("enter date"),
     CELL_PHONE("cell phone"),
     HOME_PHONE("home phone"),
