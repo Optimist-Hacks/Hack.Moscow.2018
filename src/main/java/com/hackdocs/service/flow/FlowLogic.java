@@ -1,11 +1,12 @@
-package com.hackdocs.service;
+package com.hackdocs.service.flow;
 
+import com.hackdocs.service.SessionState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractFlow<State extends Enum> {
+public abstract class FlowLogic<State extends Enum> {
 
-    protected static Logger logger = LoggerFactory.getLogger(AbstractFlow.class);
+    protected static Logger logger = LoggerFactory.getLogger(FlowLogic.class);
 
     protected abstract String process(String text, SessionState<State> state);
 

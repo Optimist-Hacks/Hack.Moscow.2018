@@ -3,7 +3,7 @@ package com.hackdocs.controller;
 import com.hackdocs.ResponseHelper;
 import com.hackdocs.model.Request;
 import com.hackdocs.model.Response;
-import com.hackdocs.service.Logic;
+import com.hackdocs.service.logic.Logic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

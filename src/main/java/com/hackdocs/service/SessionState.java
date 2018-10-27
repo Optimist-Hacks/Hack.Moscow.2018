@@ -1,11 +1,13 @@
 package com.hackdocs.service;
 
+import com.hackdocs.service.flow.FlowLogic;
+
 public class SessionState<State extends Enum> {
 
     private State logicState;
-    private AbstractFlow flow;
+    private FlowLogic flow;
 
-    public SessionState(State state, AbstractFlow flow) {
+    public SessionState(State state, FlowLogic flow) {
         this.logicState = state;
         this.flow = flow;
     }
@@ -18,7 +20,7 @@ public class SessionState<State extends Enum> {
         this.logicState = logicState;
     }
 
-    public AbstractFlow getFlow() {
+    public FlowLogic getFlow() {
         return flow;
     }
 

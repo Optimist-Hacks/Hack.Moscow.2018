@@ -1,13 +1,15 @@
-package com.hackdocs.service;
+package com.hackdocs.service.logic;
 
+import com.hackdocs.service.SessionState;
+import com.hackdocs.service.flow.FlowLogic;
 import com.hackdocs.validators.Validator;
 import org.springframework.stereotype.Service;
 
 @Service
-public class VocationLogic extends AbstractFlow<VocationLogic.State> {
+public class VocationLogic extends FlowLogic<VocationLogic.State> {
 
     @Override
-    public String process(String text, SessionState<VocationLogic.State> state) {
+    public String process(String text, SessionState<State> state) {
         switch (state.getLogicState()) {
             case INIT:
                 return handleInit(state);
