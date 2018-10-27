@@ -2,6 +2,8 @@ package com.hackdocs.service;
 
 import com.hackdocs.model.businessModels.Document;
 import com.hackdocs.model.businessModels.Field;
+import com.hackdocs.model.businessModels.FieldType;
+import com.hackdocs.util.DateUtils;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
@@ -87,6 +89,11 @@ public class PdfService {
         ArrayList<String> result = new ArrayList<>();
         int maxLength = field.getProperties().getMaxLength();
         String value = field.getValue();
+        if (field.getType() == FieldType.DEPARTURE_TIME || field.getType() == FieldType.ARRIVAL_TIME) {
+            value = DateUtils.formatTime(value);
+        } else if (field.getType() == FieldType.DEPARTURE_DATE || field.getType() == FieldType.ARRIVAL_DATE) {
+            value = DateUtils.formatDate(value);
+        }
         for (int i = 0; i < field.getProperties().getNumbOfLines(); i++) {
             if (value.length() <= maxLength) {
                 result.add(value);
