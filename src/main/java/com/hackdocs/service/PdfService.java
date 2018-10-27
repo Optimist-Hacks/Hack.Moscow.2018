@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 @Service
 public class PdfService {
@@ -46,12 +47,14 @@ public class PdfService {
 
         PdfContentByte over = stamper.getOverContent(1);
 
+
         for (Field field : document.getFields()) {
+            ArrayList<String> lines = fieldLines(field);
             for (int lineIndex = 0; lineIndex < field.getProperties().getNumbOfLines(); lineIndex++) {
                 over.beginText();
                 over.setFontAndSize(font, 10);
                 over.setTextMatrix(field.getProperties().getXCoord(), field.getProperties().getYCoord() - 15 * lineIndex);
-                over.showText(field.getValue());
+                over.showText(lines.get(lineIndex));
                 over.endText();
             }
         }
@@ -63,6 +66,23 @@ public class PdfService {
         }
 
         return path.getFileName().toString();
+    }
+
+    private ArrayList<String> fieldLines(Field field) {
+        ArrayList<String> result = new ArrayList<>();
+        int maxLength = field.getProperties().getMaxLength();
+        String value = field.getValue();
+        for (int i=0; i<field.getProperties().getNumbOfLines(); i++) {
+            if (value.length() <= maxLength) {
+                result.add(value);
+                break;
+            }
+            String temp = value.substring(0, maxLength);
+            result.add(temp);
+            value = value.replace(temp, "");
+        }
+
+        return result;
     }
 
     private Path prepareDocumentPath() {
