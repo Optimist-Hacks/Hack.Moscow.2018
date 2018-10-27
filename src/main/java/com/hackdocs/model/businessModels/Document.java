@@ -11,6 +11,7 @@ public class Document {
     String fileLink;
     String id = "123";
     String pdf;
+    String png;
 
     public Field getFieldByType(FieldType type) {
         return fields.stream()

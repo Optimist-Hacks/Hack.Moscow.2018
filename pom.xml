@@ -34,6 +34,16 @@
             <id>mavenCentral</id>
             <url>http://central.maven.org/maven2/</url>
         </repository>
+        <repository>
+            <id>org.ghost4j.repository.releases</id>
+            <name>Ghost4J releases</name>
+            <url>http://repo.ghost4j.org/maven2/releases</url>
+        </repository>
+        <repository>
+            <id>org.ghost4j.repository.snapshots</id>
+            <name>Ghost4J snapshots</name>
+            <url>http://repo.ghost4j.org/maven2/snapshots</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -123,6 +133,13 @@
             <artifactId>tomcat-embed-jasper</artifactId>
             <version>9.0.10</version>
         </dependency>
+        <dependency>
+            <groupId>org.ghost4j</groupId>
+            <artifactId>ghost4j</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+
 
     </dependencies>
 

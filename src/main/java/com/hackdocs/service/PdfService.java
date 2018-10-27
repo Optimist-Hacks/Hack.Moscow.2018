@@ -7,16 +7,24 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
+import org.ghost4j.document.PDFDocument;
+import org.ghost4j.renderer.RendererException;
+import org.ghost4j.renderer.SimpleRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.RenderedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PdfService {
@@ -25,6 +33,7 @@ public class PdfService {
 
     private static final String OUT_FOLDER = "out_documents";
     private static final String PDF = "pdf";
+    private static final String PNG = "png";
 
     public String fillDocument(Document document) {
         PdfStamper stamper = null;
@@ -68,8 +77,10 @@ public class PdfService {
         }
 
         String fileName = path.getFileName().toString();
+        String imageName = saveImage(pdfToImage("/home/HackDocsBot/out_documents/" + fileName)).getFileName().toString();
         document.setPdf("https://techdrive.pro/api/v1/pdf/" + fileName);
-        return fileName;
+        document.setPng("http://techdrive.pro/api/v1/pdf/" + imageName);
+        return imageName;
     }
 
     private ArrayList<String> fieldLines(Field field) {
@@ -101,8 +112,52 @@ public class PdfService {
         return path.resolve(System.currentTimeMillis() + "." + PDF);
     }
 
+    private Path prepareImagePath() {
+        Path path = Paths.get(OUT_FOLDER);
+        if (!Files.exists(path)) {
+            try {
+                Files.createDirectory(path);
+            } catch (IOException e) {
+                logger.error("Can' create folder", e);
+            }
+        }
+        return path.resolve(System.currentTimeMillis() + "." + PNG);
+    }
+
     public Path getDocument(String path) {
         return Paths.get(OUT_FOLDER).resolve(path);
+    }
+
+    private Path saveImage(Image image) {
+        Path path = prepareImagePath();
+        try {
+            ImageIO.write((RenderedImage) image, PNG, new File(path.toString()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return path;
+    }
+
+    private Image pdfToImage(String path) {
+
+        PDFDocument document = new PDFDocument();
+        try {
+            document.load(new File(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        SimpleRenderer renderer = new SimpleRenderer();
+        renderer.setResolution(300);
+        List<Image> images = new ArrayList<>();
+        try {
+            images = renderer.render(document);
+        } catch (IOException | RendererException | org.ghost4j.document.DocumentException e) {
+            e.printStackTrace();
+        }
+
+        return images.get(0);
     }
 
 }
