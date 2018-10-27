@@ -1,14 +1,11 @@
 package com.hackdocs.pfd;
 
-import com.itextpdf.text.DocumentException;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Temple {
 
-    public static void main(String[] args) throws IOException, DocumentException {
+    public static void main(String[] args) {
 
         PdfProcessor processor = new PdfProcessor();
 
@@ -18,7 +15,7 @@ public class Temple {
             processor.writeToLine(entry.getKey(), entry.getValue().toString());
         }
 
-        processor.writeDocument();
+
 
     }
 

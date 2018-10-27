@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.hackdocs.pfd.FieldModels.*;
 
@@ -40,12 +41,18 @@ class PdfProcessor implements BasePdfProcessor {
     }
 
     @Override
+    public void writeDocument(HashMap<Integer, String> values) {
+        for (Map.Entry<Integer, String> entry : values.entrySet()) {
+            writeToLine(entry.getKey(), entry.getValue());
+        }
+        writeDocument();
+    }
+
     public void writeToLine(int lineIndex, String value) {
         documentLines.set(lineIndex, insertToLine(documentLines.get(lineIndex), value));
     }
 
-    @Override
-    public void writeDocument() {
+    private void writeDocument() {
         Document document = new Document();
 
         try {
