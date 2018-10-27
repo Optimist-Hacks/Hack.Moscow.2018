@@ -117,7 +117,7 @@ public class Logic {
     }
 
     private String defaultWelcomeText() {
-        return "Hello! This is our cool bot. Please choose document:\n1.Vocation\n2.Hotel";
+        return "Hello! This is our cool bot. Please choose document:\n-Vacation\n-Hotel";
     }
 
     private String defaultWrongText() {
