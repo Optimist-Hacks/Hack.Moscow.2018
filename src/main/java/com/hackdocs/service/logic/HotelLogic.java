@@ -13,6 +13,7 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
 
     @Override
     public String process(Request request, Session<State> session) {
+        System.out.println(request.getQueryResult().getQueryText().toLowerCase());
         if (request.getQueryResult().getQueryText().toLowerCase().equals("cancel")) {
             session.setLogicState(State.INIT);
         }
