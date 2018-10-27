@@ -45,13 +45,13 @@ public class HotelFieldHandlerDFParameters {
     }
 
     public String handleLastName(Request request, Session<HotelLogic.State> session) {
-
         String lastName = request.getQueryResult().getParameters().get("lastName");
+
+        logger.info("LAST_NAME_HANDLE");
 
         if (notEmprty.test(lastName)) {
             changeState(session, HotelLogic.State.COUNTRY);
             session.getDocument().getFieldByType(LASTNAME).setValue(lastName);
-            logger.info("Я ЗАЛОГГИРОВАЛ ФА:  " + session.getDocument().getFieldByType(NAME).getValue());
             return "Ok. Now, please enter a your country";
         } else {
             return "This is not a last name. Try again";
@@ -59,6 +59,9 @@ public class HotelFieldHandlerDFParameters {
     }
 
     public String handleCountry(Request request, Session<HotelLogic.State> session) {
+
+        logger.info("COUNTRY_HANDLE");
+
         String country = request.getQueryResult().getParameters().get("country");
         if (notEmprty.test(country)) {
             changeState(session, HotelLogic.State.CITY);
@@ -71,6 +74,8 @@ public class HotelFieldHandlerDFParameters {
 
     public String handleCity(Request request, Session<HotelLogic.State> session) {
 
+        logger.info("CITY_HANDLE");
+
         String city = request.getQueryResult().getParameters().get("city");
         if (notEmprty.test(city)) {
             changeState(session, HotelLogic.State.CELL_PHONE);
@@ -82,6 +87,7 @@ public class HotelFieldHandlerDFParameters {
     }
 
     public String handleCellPhone(Request request, Session<HotelLogic.State> session) {
+        logger.info("CELL_PHONE_HANDLE");
 
         String cellPhone = request.getQueryResult().getParameters().get("cellPhone");
         if (notEmprty.test(cellPhone)) {
@@ -94,6 +100,7 @@ public class HotelFieldHandlerDFParameters {
     }
 
     public String handleEmail(Request request, Session<HotelLogic.State> session) {
+        logger.info("EMAIL_HANDLE");
 
         String email = request.getQueryResult().getParameters().get("email");
         if (notEmprty.test(email)) {
@@ -106,6 +113,7 @@ public class HotelFieldHandlerDFParameters {
     }
 
     public String handleDepartureDate(Request request, Session<HotelLogic.State> session) {
+        logger.info("DATE_HANDLE");
 
         String depDate = request.getQueryResult().getParameters().get("depDate");
         if (notEmprty.test(depDate)) {
@@ -118,6 +126,8 @@ public class HotelFieldHandlerDFParameters {
     }
 
     public String handleDepartureTime(Request request, Session<HotelLogic.State> session) {
+        logger.info("TIME_HANDLE");
+
         String depTime = request.getQueryResult().getParameters().get("depTime");
         if (notEmprty.test(depTime)) {
             changeState(session, HotelLogic.State.TERMINATED);
