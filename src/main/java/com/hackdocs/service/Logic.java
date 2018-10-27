@@ -49,6 +49,7 @@ public class Logic {
 
         SessionState sessionState = sessions.get(session);
         if (sessionState == null) {
+            logger.info("This is new session");
             Flow flow = Flow.fromValue(text);
             if (flow != null) {
                 switch (flow) {
@@ -59,6 +60,7 @@ public class Logic {
                 }
             }
         } else {
+            logger.info("We already have this session");
             AbstractFlow flow = sessionState.getFlow();
             response = flow.processRequest(text, sessionState);
         }
