@@ -1,4 +1,4 @@
-package com.hackdocs.pfd;
+package com.hackdocs.pdf;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfReader;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.hackdocs.pfd.FieldModels.*;
+import static com.hackdocs.pdf.FieldModels.*;
 
 class PdfProcessor implements BasePdfProcessor {
 

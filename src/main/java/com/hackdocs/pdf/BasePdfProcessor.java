@@ -1,4 +1,4 @@
-package com.hackdocs.pfd;
+package com.hackdocs.pdf;
 
 import java.util.HashMap;
 
