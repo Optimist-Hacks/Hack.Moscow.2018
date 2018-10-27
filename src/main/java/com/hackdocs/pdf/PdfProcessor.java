@@ -1,8 +1,8 @@
 package com.hackdocs.pdf;
 
+import com.hackdocs.model.businessModels.Field;
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 import static com.hackdocs.pdf.FieldModels.*;
 
-class PdfProcessor implements BasePdfProcessor {
+class PdfProcessor {
 
     private ArrayList<FieldModels> models;
 
@@ -33,120 +33,48 @@ class PdfProcessor implements BasePdfProcessor {
         models.add(MALE_FIELD);
         models.add(FAVORITE_PORN_FIELD);
     }
+/*
+    public void fillDocument() {
 
-    @Override
-    public HashMap<Integer, FieldModels> process(String path) {
-        readAndProcessDocument(path);
-        return fields;
-    }
 
-    @Override
-    public void writeDocument(HashMap<Integer, String> values) {
-        for (Map.Entry<Integer, String> entry : values.entrySet()) {
-            writeToLine(entry.getKey(), entry.getValue());
-        }
-        writeDocument();
-    }
-
-    public void writeToLine(int lineIndex, String value) {
-        documentLines.set(lineIndex, insertToLine(documentLines.get(lineIndex), value));
-    }
-
-    private void writeDocument() {
-        Document document = new Document();
-
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream("resultDocument.pdf"));
-        } catch (DocumentException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        document.open();
-
-        Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16, BaseColor.BLACK);
-
-        for (String line : documentLines) {
-            try {
-                document.add(new Paragraph(line, font));
-            } catch (DocumentException e) {
-                e.printStackTrace();
-            }
-        }
-
-        document.close();
-    }
-
-    private void readAndProcessDocument(String path) {
+        PdfStamper stamper = null;
         PdfReader reader = null;
+        BaseFont font = null;
+
         try {
-            reader = new PdfReader(path);
-        } catch (IOException e) {
+            reader = new PdfReader("src/main/resources/pdf/application.pdf"); // input PDF
+            stamper = new PdfStamper(reader,
+                    new FileOutputStream("documentResult.pdf")); // output PDF
+            font = BaseFont.createFont(
+                    BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED); // set font
+        } catch (IOException | DocumentException e) {
             e.printStackTrace();
         }
 
-        documentLines = new ArrayList<>();
+        assert stamper != null;
+        assert font != null;
 
-        assert reader != null;
-        for (int i = 1; i <= reader.getNumberOfPages(); ++i) {
-            TextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
-            String text = null;
-            try {
-                text = PdfTextExtractor.getTextFromPage(reader, i, strategy);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            int count = 0;
 
-            assert text != null;
-            for (String line : text.split("\n")) {
-                documentLines.add(line);
 
-                FieldModels model = processLine(line);
-                if (model != null) {
-                    fields.put(count, model);
-                }
-                count++;
-            }
+
+        // get object for writing over the existing content;
+        // you can also use getUnderContent for writing in the bottom layer
+        PdfContentByte over = stamper.getOverContent(i);
+
+        // write text
+        over.beginText();
+        over.setFontAndSize(font, 10);    // set font and size
+        over.setTextMatrix(107, 740);   // set x,y position (0,0 is at the bottom left)
+        over.showText("I can write at page " + i);  // set text
+        over.endText();
+
+
+        try {
+            stamper.close();
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
         }
-        reader.close();
     }
 
-    @Nullable
-    private FieldModels processLine(@NotNull String line) {
-        //BAD HARDCODE
-        for (FieldModels model : models) {
-            for (String keyWord : model.getValues()) {
-                if (line.contains(keyWord + " _")) {
-                    return model;
-                }
-            }
-        }
-        return null;
-    }
-
-    private String insertToLine(@NotNull String line, @NotNull String value) {
-        ArrayList<Character> arrayValue = new ArrayList<>();
-        for (Character ch : value.toCharArray()) {
-            arrayValue.add(ch);
-        }
-
-        for (Character ch : value.toCharArray()) {
-            if (!line.contains("_")) break;
-            line = line.replaceFirst("_", ch.toString());
-            arrayValue.remove(0);
-        }
-
-        line = line.trim();
-
-        if (!arrayValue.isEmpty()) {
-            StringBuilder lineBuilder = new StringBuilder(line);
-            for (Character ch : arrayValue) {
-                lineBuilder.append(ch);
-            }
-            line = lineBuilder.toString();
-        }
-
-        return line;
-    }
-
+*/
 }
