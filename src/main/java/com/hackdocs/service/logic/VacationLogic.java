@@ -30,7 +30,7 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
     }
 
     private String handleFirstName(String text, SessionState<VacationLogic.State> state) {
-        if (!Validator.isValidFirstName(text)) {
+        if (!Validator.isValidName(text)) {
             return "This is not a name. Try again";
         }
 
@@ -39,7 +39,7 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
     }
 
     private String handleLastName(String text, SessionState<VacationLogic.State> state) {
-        if (!Validator.isValidSecondName(text)) {
+        if (!Validator.isValidName(text)) {
             return "This is not a last name. Try again";
         }
 
