@@ -46,7 +46,7 @@ public class Logic {
         logger.info("Session = " + session);
 
         String response;
-        if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME)) {
+        if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME) || !sessions.containsKey(session)) {
             response = processWelcomeMessage(session);
         } else {
             response = processDataMessage(request, session);
@@ -117,7 +117,7 @@ public class Logic {
     }
 
     private String defaultWelcomeText() {
-        return "Hello! This is our cool bot. Please choose document";
+        return "Hello! This is our cool bot. Please choose document:\n1.Vocation\n2.Hotel";
     }
 
     private String defaultWrongText() {
