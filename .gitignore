@@ -57,3 +57,5 @@ fabric.properties
 /target/
 /HackDocsBot.iml
 /.idea/
+hackdocs.iml
+resultDocument.pdf
