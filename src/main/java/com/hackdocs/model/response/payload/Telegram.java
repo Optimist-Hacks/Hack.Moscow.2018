@@ -2,6 +2,9 @@ package com.hackdocs.model.response.payload;
 
 import lombok.Data;
 
+import java.util.Collections;
+import java.util.List;
+
 @Data
 public class Telegram {
 
@@ -9,13 +12,15 @@ public class Telegram {
 
     public String imageUrl = "http://images.math.cnrs.fr/IMG/png/section8-image.png";
 
-    public String messages = "[\n" +
-            "  {\n" +
-            "    \"imageUrl\": \"http://images.math.cnrs.fr/IMG/png/section8-image.png\",\n" +
-            "    \"platform\": \"telegram\",\n" +
-            "    \"type\": 3\n" +
-            "  }\n" +
-            "]";
+    public List<Message> messages = Collections.singletonList(new Message("telegram"));
+
+//    public String messages = "[\n" +
+//            "  {\n" +
+//            "    \"imageUrl\": \"http://images.math.cnrs.fr/IMG/png/section8-image.png\",\n" +
+//            "    \"platform\": \"telegram\",\n" +
+//            "    \"type\": 3\n" +
+//            "  }\n" +
+//            "]";
 
     public Telegram(String text) {
         this.text = text;
