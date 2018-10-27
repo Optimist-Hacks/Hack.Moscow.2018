@@ -47,15 +47,16 @@ public class Logic {
     }
 
     private Response processDataMessage(Request request, String sessionId) {
-        String response;
+        String response = null;
         String queryText = request.getQueryResult().getQueryText();
         logger.info("Full text = " + queryText);
 
         Session currSession = obtainSession(sessionId, queryText);
 
-        FlowLogic flow = currSession.getFlow();
-        response = flow.processRequest(queryText, currSession);
-
+        if (currSession != null) {
+            FlowLogic flow = currSession.getFlow();
+            response = flow.processRequest(queryText, currSession);
+        }
 
         if (RocketText.isEmpty(response)) {
             response = defaultWrongText();
