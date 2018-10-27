@@ -31,7 +31,7 @@ public class GoogleController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Response> process(@RequestBody String payload) throws IOException {
+    public ResponseEntity process(@RequestBody String payload) throws IOException {
         logger.info("Receive google request payload = " + payload);
 
         Request request = new ObjectMapper().readValue(payload, Request.class);
@@ -39,7 +39,13 @@ public class GoogleController {
         Response response = logic.processRequest(request);
         logger.info("Send response = " + response);
 
-        return responseHelper.ok(response);
+        return responseHelper.ok("\"messages\": [\n" +
+                "  {\n" +
+                "    \"platform\": \"facebook\",\n" +
+                "    \"speech\": \"Text response\",\n" +
+                "    \"type\": 0\n" +
+                "  }\n" +
+                "]");
     }
 
 }

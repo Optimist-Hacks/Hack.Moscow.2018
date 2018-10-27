@@ -25,6 +25,7 @@ public class Logic {
 
     private static Logger logger = LoggerFactory.getLogger(Logic.class);
     private static final String GOOGLE_ASSISTANT_WELCOME = "GOOGLE_ASSISTANT_WELCOME";
+    private static final String TELEGRAM = "telegram";
 
     private final Map<String, Session> sessions = new HashMap<>();
 
@@ -42,6 +43,10 @@ public class Logic {
         if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME)) {
             return processWelcomeMessage(session);
         }
+
+//        if (RocketText.safeEqualsIgnoreCase(request.getOriginalDetectIntentRequest().getSource(), "TELEGRAM")) {
+//            return
+//        }
 
         return processDataMessage(request, session);
     }
