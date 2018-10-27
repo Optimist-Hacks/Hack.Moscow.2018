@@ -38,7 +38,8 @@ public class Logic {
         logger.info("Session = " + session);
 
         if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME)) {
-            logger.info("GOOGLE_ASSISTANT_WELCOME");
+            logger.info(GOOGLE_ASSISTANT_WELCOME);
+            logger.info("Remove session " + session);
             sessions.remove(session);
             return buildResponse(defaultWelcomeText());
         }
