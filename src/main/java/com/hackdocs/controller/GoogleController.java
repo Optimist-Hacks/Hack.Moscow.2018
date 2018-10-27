@@ -31,7 +31,7 @@ public class GoogleController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Response> process(@RequestBody String payload) throws IOException {
+    public ResponseEntity process(@RequestBody String payload) throws IOException {
         logger.info("Receive google request payload = " + payload);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -41,7 +41,22 @@ public class GoogleController {
         Response response = logic.processRequest(request);
         logger.info("Send response = " + objectMapper.writeValueAsString(response));
 
-        return responseHelper.ok(response);
+        return responseHelper.ok("{\n" +
+                "   \"payload\":{\n" +
+                "      \"telegram\":{\n" +
+                "         \"expectUserResponse\":true,\n" +
+                "         \"richResponse\":{\n" +
+                "            \"items\":[\n" +
+                "               {\n" +
+                "                  \"simpleResponse\":{\n" +
+                "                     \"textToSpeech\":\"Please call Alexander!!!\"\n" +
+                "                  }\n" +
+                "               }\n" +
+                "            ]\n" +
+                "         }\n" +
+                "      }\n" +
+                "   }\n" +
+                "}");
     }
 
 }
