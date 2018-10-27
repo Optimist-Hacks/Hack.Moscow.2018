@@ -1,6 +1,5 @@
 package com.hackdocs.controller;
 
-import com.hackdocs.ResponseHelper;
 import com.hackdocs.model.businessModels.Document;
 import com.hackdocs.service.QRService;
 import org.slf4j.Logger;
@@ -22,12 +21,10 @@ public class QRController {
 
     private static Logger logger = LoggerFactory.getLogger(QRController.class);
     private final QRService qrService;
-    private final ResponseHelper responseHelper;
 
     @Autowired
-    public QRController(QRService qrService, ResponseHelper responseHelper) {
+    public QRController(QRService qrService) {
         this.qrService = qrService;
-        this.responseHelper = responseHelper;
     }
 
     @ResponseBody
