@@ -34,7 +34,7 @@ public class GoogleController {
         Response response = logic.processRequest(request);
         logger.info("Send response = " + response);
 
-        return responseHelper.ok(logic.processRequest(request));
+        return responseHelper.ok(response);
     }
 
 }
