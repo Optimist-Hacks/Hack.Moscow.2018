@@ -15,7 +15,6 @@ public class Temple {
 
     }
 
-
     private Document createHotelRegistrationApplication() {
         ArrayList<Field> fields = new ArrayList<>();
         Document document = new Document();
