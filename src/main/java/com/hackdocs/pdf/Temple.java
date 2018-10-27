@@ -12,52 +12,68 @@ import java.util.ArrayList;
 public class Temple {
     public static void main(String[] args) throws IOException, DocumentException {
 
+        PdfProcessor processor = new PdfProcessor();
+        Document document = createHotelRegistrationApplication();
+
+        processor.fillDocument(document);
+
+
 
     }
 
-    private Document createHotelRegistrationApplication() {
+    private static Document createHotelRegistrationApplication() {
         ArrayList<Field> fields = new ArrayList<>();
         Document document = new Document();
 
         fields.add(new Field(
                 FieldType.NAME,
-                new FieldProperties(150,50,1,30)
+                "Name",
+                new FieldProperties(160,645,1,30)
         ));
         fields.add(new Field(
                 FieldType.FAMILYNAME,
-                new FieldProperties(360,100,1,30)
+                "Family name",
+                new FieldProperties(390,645,1,30)
         ));
         fields.add(new Field(
                 FieldType.ADDRESS,
-                new FieldProperties(150,150,2,200)
+                "Address",
+                new FieldProperties(160,630,2,200)
         ));
         fields.add(new Field(
                 FieldType.COUNTRY,
-                new FieldProperties(150,200,1,30)
+                "Country",
+                new FieldProperties(160,602,1,30)
         ));
         fields.add(new Field(
                 FieldType.CITY,
-                new FieldProperties(360,250,1,30)
+                "City",
+                new FieldProperties(390,602,1,30)
         ));
         fields.add(new Field(
                 FieldType.HOME_PHONE,
-                new FieldProperties(150,300,1,30)
+                "Home number",
+                new FieldProperties(160,587,1,30)
         ));
         fields.add(new Field(
                 FieldType.CELL_PHONE,
-                new FieldProperties(360,350,1,30)
+                "Cell number",
+                new FieldProperties(390,587,1,30)
         ));
         fields.add(new Field(
                 FieldType.EMAIL,
-                new FieldProperties(150,400,1,30)
+                "Some email",
+                new FieldProperties(160,572,1,30)
         ));
         fields.add(new Field(
                 FieldType.DEPARTURE_DATE,
-                new FieldProperties(150,450,1,30)
+                "22.22.22",
+                new FieldProperties(160,532,1,30)
         ));
         fields.add(new Field(
                 FieldType.DEPARTURE_TIME,
-                new FieldProperties(480,500,1,30)
+                "11.11",
+                new FieldProperties(480,532,1,30)
         ));
 
         document.setFields(fields);
