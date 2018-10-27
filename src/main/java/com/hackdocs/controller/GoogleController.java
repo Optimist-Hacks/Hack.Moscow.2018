@@ -29,6 +29,10 @@ public class GoogleController {
     @PostMapping("")
     public ResponseEntity<String> process(@RequestBody Request request) {
         logger.info("Receive google request payload = " + request);
+
+        String response = logic.processRequest(request);
+        logger.info("Send response = " + response);
+
         return responseHelper.ok(logic.processRequest(request));
     }
 

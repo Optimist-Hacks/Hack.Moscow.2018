@@ -42,11 +42,41 @@ public class Logic {
     }
 
     private String defaultWelcomeText() {
-        return "Hello! THis is super cool bot. Please choose type of document";
+        return "{\n" +
+                "  \"payload\": {\n" +
+                "    \"google\": {\n" +
+                "      \"expectUserResponse\": true,\n" +
+                "      \"richResponse\": {\n" +
+                "        \"items\": [\n" +
+                "          {\n" +
+                "            \"simpleResponse\": {\n" +
+                "              \"textToSpeech\": \"this is a simple response\"\n" +
+                "            }\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    }\n" +
+                "  }\n" +
+                "}";
     }
 
     private String defaultWrongText() {
-        return "Can't understand. Please try again";
+        return "{\n" +
+                "  \"payload\": {\n" +
+                "    \"google\": {\n" +
+                "      \"expectUserResponse\": true,\n" +
+                "      \"richResponse\": {\n" +
+                "        \"items\": [\n" +
+                "          {\n" +
+                "            \"simpleResponse\": {\n" +
+                "              \"textToSpeech\": \"this is a simple response\"\n" +
+                "            }\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    }\n" +
+                "  }\n" +
+                "}";
     }
 
 }
