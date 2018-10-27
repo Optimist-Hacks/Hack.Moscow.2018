@@ -31,7 +31,7 @@ public class GoogleController {
     }
 
     @PostMapping("")
-    public ResponseEntity process(@RequestBody String payload) throws IOException {
+    public ResponseEntity<Response> process(@RequestBody String payload) throws IOException {
         logger.info("Receive google request payload = " + payload);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -41,14 +41,7 @@ public class GoogleController {
         Response response = logic.processRequest(request);
         logger.info("Send response = " + objectMapper.writeValueAsString(response));
 
-        return responseHelper.ok("{\n" +
-                "   \"payload\":{\n" +
-                "      \"telegram\":{\n" +
-                "         \"text\":\"You can read about *entities* [here](/docs/concept-entities).\",\n" +
-                "         \"parse_mode\":\"Markdown\"\n" +
-                "      }\n" +
-                "   }\n" +
-                "}");
+        return responseHelper.ok(response);
     }
 
 }
