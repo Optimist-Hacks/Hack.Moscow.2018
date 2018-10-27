@@ -1,7 +1,9 @@
 package com.hackdocs.controller;
 
+import com.hackdocs.service.logic.HotelLogic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,13 @@ public class HotelController {
     public String hotel() {
         logger.info("Receive hotel request");
         return HOTEL;
+    }
+
+    @GetMapping("/clear")
+    public ResponseEntity hotelClear() {
+        logger.info("Receive clear hotel request");
+        HotelLogic.COMPLETED_DOCUMENTS.clear();
+        return ResponseEntity.ok("");
     }
 
 }
