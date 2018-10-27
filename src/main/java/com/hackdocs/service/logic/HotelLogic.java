@@ -7,6 +7,7 @@ import com.hackdocs.service.flow.FlowLogic;
 import com.hackdocs.validators.Validator;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,7 +138,7 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
         if (Validator.isValidTime(text)) {
             changeState(session, State.TERMINATED);
             session.getDocument().getFieldByType(DEPARTURE_TIME).setValue(text);
-            String file = buildPDF(session);
+            Image file = buildPDF(session);
             return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/pdf/%s", file);
         } else {
             return "This is not a time. Try again";
@@ -234,9 +235,9 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
         if (depTime != null) {
             changeState(session, State.TERMINATED);
             session.getDocument().getFieldByType(DEPARTURE_TIME).setValue(depTime);
-            String file = buildPDF(session);
+            Image file = buildPDF(session);
             COMPLETED_DOCUMENTS.add(session.getDocument());
-            return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/pdf/%s", file);
+            return String.format("Ok. That's all folks! Here is your file:%s", file);
         } else {
             return "This is not a time. Try again";
         }
