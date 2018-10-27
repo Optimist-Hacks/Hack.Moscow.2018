@@ -21,4 +21,10 @@ public abstract class FlowLogic<State extends Enum> {
 
     public abstract State getInitState();
 
+    protected void buildPDF(Session<State> session) {
+
+
+    }
+
+
 }

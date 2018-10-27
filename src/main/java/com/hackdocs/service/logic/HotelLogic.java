@@ -5,6 +5,8 @@ import com.hackdocs.service.flow.FlowLogic;
 import com.hackdocs.validators.Validator;
 import org.springframework.stereotype.Service;
 
+import static com.hackdocs.model.businessModels.FieldType.*;
+
 @Service
 public class HotelLogic extends FlowLogic<HotelLogic.State> {
 
@@ -44,117 +46,128 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
 
     private String handleInit(Session<State> state) {
         changeState(state, State.FIRST_NAME);
-        return "Hello! You want to create HOTEL?? document. What is your first name?";
+        return "Hello! You want to create hotel check-in document. What is your name?";
     }
 
-    private String handleFirstName(String text, Session<State> state) {
+    private String handleFirstName(String text, Session<State> session) {
         if (Validator.isValidName(text)) {
-            changeState(state, State.LAST_NAME);
+            changeState(session, State.LAST_NAME);
+            session.getDocument().getFieldByType(NAME).setValue(text);
             return "Ok. Now, please enter last name";
         } else {
             return "This is not a name. Try again";
         }
     }
 
-    private String handleLastName(String text, Session<State> state) {
+    private String handleLastName(String text, Session<State> session) {
         if (Validator.isValidName(text)) {
-            changeState(state, State.ADDRESS);
+            changeState(session, State.ADDRESS);
+            session.getDocument().getFieldByType(LASTNAME).setValue(text);
             return "Ok. Now, please enter a your address";
         } else {
             return "This is not a last name. Try again";
         }
     }
 
-    private String handleAddress(String text, Session<State> state) {
+    private String handleAddress(String text, Session<State> session) {
         if (Validator.isValidAddress(text)) {
-            changeState(state, State.COUNTRY);
+            changeState(session, State.COUNTRY);
+            session.getDocument().getFieldByType(ADDRESS).setValue(text);
             return "Ok. Now, please enter a your country. ";
         } else {
             return "This is not an address. Try again";
         }
     }
 
-    private String handleCountry(String text, Session<State> state) {
+    private String handleCountry(String text, Session<State> session) {
         if (Validator.isValidCountry(text)) {
-            changeState(state, State.CITY);
-            return "Ok. ";
+            changeState(session, State.CITY);
+            session.getDocument().getFieldByType(COUNTRY).setValue(text);
+            return "Ok. Now, enter your city.";
         } else {
             return "This is not a country. Try again";
         }
     }
 
-    private String handleCity(String text, Session<State> state) {
+    private String handleCity(String text, Session<State> session) {
         if (Validator.isValidCity(text)) {
-            changeState(state, State.TELEPHONE);
+            changeState(session, State.TELEPHONE);
+            session.getDocument().getFieldByType(HOME_PHONE).setValue(text);
             return "Ok. Now, please enter a your home phone number";
         } else {
             return "This is not a city. Try again";
         }
     }
 
-    private String handleTelephone(String text, Session<State> state) {
+    private String handleTelephone(String text, Session<State> session) {
         if (Validator.isValidPhone(text)) {
-            changeState(state, State.CELL_PHONE);
+            changeState(session, State.CELL_PHONE);
+            session.getDocument().getFieldByType(CELL_PHONE).setValue(text);
             return "Ok. Now, please enter your cell phone number";
         } else {
             return "This is not a phone number. Try again";
         }
-
     }
 
-    private String handleCellPhone(String text, Session<State> state) {
+    private String handleCellPhone(String text, Session<State> session) {
         if (Validator.isValidPhone(text)) {
-            changeState(state, State.EMAIL);
+            changeState(session, State.EMAIL);
+            session.getDocument().getFieldByType(EMAIL).setValue(text);
             return "Ok. Now, please enter a your e-mail.";
         } else {
             return "This is not a cell phone number. Try again";
         }
     }
 
-    private String handleEmail(String text, Session<State> state) {
+    private String handleEmail(String text, Session<State> session) {
         if (Validator.isValidEmail(text)) {
-            changeState(state, State.ARRIVAL_DATE);
+            changeState(session, State.ARRIVAL_DATE);
+            session.getDocument().getFieldByType(ARRIVAL_DATE).setValue(text);
             return "Ok. Now, please enter a arrival date.";
         } else {
             return "This is not an e-mail . Try again";
         }
     }
 
-    private String handleArrivalDate(String text, Session<State> state) {
+    private String handleArrivalDate(String text, Session<State> session) {
         if (Validator.isValidDate(text)) {
-            changeState(state, State.ARRIVAL_TIME);
+            changeState(session, State.ARRIVAL_TIME);
+            session.getDocument().getFieldByType(ARRIVAL_TIME).setValue(text);
             return "Ok. Now, please enter arrival time.";
         } else {
             return "This is not a date. Try again";
         }
     }
 
-    private String handleArrivalTime(String text, Session<State> state) {
+    private String handleArrivalTime(String text, Session<State> session) {
         if (Validator.isValidTime(text)) {
-            changeState(state, State.DEPARTURE_DATE);
+            changeState(session, State.DEPARTURE_DATE);
+            session.getDocument().getFieldByType(DEPARTURE_DATE).setValue(text);
             return "Ok. Now, please enter a departure date.";
         } else {
             return "This is not a time. Try again";
         }
     }
 
-    private String handleDepartureDate(String text, Session<State> state) {
+    private String handleDepartureDate(String text, Session<State> session) {
         if (Validator.isValidDate(text)) {
-            changeState(state, State.DEPARTURE_TIME);
+            changeState(session, State.DEPARTURE_TIME);
+            session.getDocument().getFieldByType(DEPARTURE_TIME).setValue(text);
             return "Ok. Now, please enter a departure time.";
         } else {
             return "This is not a date. Try again";
         }
     }
 
-    private String handleDepartureTime(String text, Session<State> state) {
+    private String handleDepartureTime(String text, Session<State> session) {
         if (Validator.isValidTime(text)) {
-            changeState(state, State.TERMINATED);
+            changeState(session, State.TERMINATED);
             return "Ok. That's all foks!";
         } else {
             return "This is not a time. Try again";
         }
     }
+
 
     @Override
     public State getInitState() {

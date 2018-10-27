@@ -26,7 +26,7 @@ public class Temple {
                 new FieldProperties(160,645,1,30)
         ));
         fields.add(new Field(
-                FieldType.FAMILYNAME,
+                FieldType.LASTNAME,
                 "Family name",
                 new FieldProperties(390,645,1,30)
         ));

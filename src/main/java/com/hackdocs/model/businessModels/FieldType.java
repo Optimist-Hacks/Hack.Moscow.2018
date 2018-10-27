@@ -5,8 +5,8 @@ public enum FieldType {
     NAME("name"),
     MIDDLENAME("middle name"),
     LASTNAME("last name"),
-    FAMILYNAME("family name"),
-    ENTER_DATE("enter date"),
+    ARRIVAL_DATE("arrival date"),
+    ARRIVAL_TIME("arrival time"),
     CELL_PHONE("cell phone"),
     HOME_PHONE("home phone"),
     ADDRESS("address"),
@@ -24,6 +24,7 @@ public enum FieldType {
     PASSPORT_SERIES("passport series"),
     PASSPORT_ISSUE_DATE("passport issue date"),
     REGISTRATION_ADDRESS("registration address"),
+    BAD_TYPE("error occured")
     ;
 
     final String description;
