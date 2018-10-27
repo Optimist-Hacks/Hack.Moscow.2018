@@ -45,53 +45,53 @@ public class Temple {
     }
 
 
-    private Document getTestDocument() {
-        ArrayList<Field> fields = new ArrayList<>();
-        Document document = new Document();
-
-        fields.add(new Field(
-                FieldType.NAME,
-                new FieldProperties()
-        ));
-        fields.add(new Field(
-                FieldType.FAMILYNAME,
-                new FieldProperties()
-        ));
-        fields.add(new Field(
-                FieldType.ADDRESS,
-                new FieldProperties()
-        ));
-        fields.add(new Field(
-                FieldType,
-                new FieldProperties()
-        ));
-        fields.add(new Field(
-                FieldType.NAME,
-                new FieldProperties()
-        ));
-        fields.add(new Field(
-                FieldType.NAME,
-                new FieldProperties()
-        ));
-        fields.add(new Field(
-                FieldType.NAME,
-                new FieldProperties()
-        ));
-        fields.add(new Field(
-                FieldType.NAME,
-                new FieldProperties()
-        ));
-        fields.add(new Field(
-                FieldType.NAME,
-                new FieldProperties()
-        ));
-        fields.add(new Field(
-                FieldType.NAME,
-                new FieldProperties()
-        ));
-
-        return document;
-    }
+//    private Document getTestDocument() {
+//        ArrayList<Field> fields = new ArrayList<>();
+//        Document document = new Document();
+//
+//        fields.add(new Field(
+//                FieldType.NAME,
+//                new FieldProperties()
+//        ));
+//        fields.add(new Field(
+//                FieldType.FAMILYNAME,
+//                new FieldProperties()
+//        ));
+//        fields.add(new Field(
+//                FieldType.ADDRESS,
+//                new FieldProperties()
+//        ));
+//        fields.add(new Field(
+//                FieldType,
+//                new FieldProperties()
+//        ));
+//        fields.add(new Field(
+//                FieldType.NAME,
+//                new FieldProperties()
+//        ));
+//        fields.add(new Field(
+//                FieldType.NAME,
+//                new FieldProperties()
+//        ));
+//        fields.add(new Field(
+//                FieldType.NAME,
+//                new FieldProperties()
+//        ));
+//        fields.add(new Field(
+//                FieldType.NAME,
+//                new FieldProperties()
+//        ));
+//        fields.add(new Field(
+//                FieldType.NAME,
+//                new FieldProperties()
+//        ));
+//        fields.add(new Field(
+//                FieldType.NAME,
+//                new FieldProperties()
+//        ));
+//
+//        return document;
+//    }
 }
 
 
