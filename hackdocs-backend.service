@@ -5,7 +5,7 @@ Description=HackDocs Backend service
 Type=simple
 User=nobody
 WorkingDirectory=/home/HackDocsBot
-ExecStart=/usr/bin/java -jar /home/HackDocsBot/target/hackdocs-0.0.1.jar
+ExecStart=/usr/bin/java -jar -Dspring.profiles.active=server /home/HackDocsBot/target/hackdocs-0.0.1.jar
 SuccessExitStatus=143
 TimeoutStopSec=10
 Restart=on-failure
