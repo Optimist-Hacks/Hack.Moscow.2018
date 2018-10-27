@@ -7,23 +7,117 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy;
 import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 
+import javax.annotation.Nullable;
+import javax.validation.constraints.NotNull;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-class PdfProcessor {
+import static com.hackdocs.pfd.FieldModels.*;
 
-    void process(String path) throws IOException, DocumentException {
+class PdfProcessor implements BasePdfProcessor {
 
-        writeDocument(readAndProcessDocument(path));
+    private ArrayList<FieldModels> models;
 
+    private HashMap<Integer, FieldModels> fields = new HashMap<>();
+    private ArrayList<String> documentLines;
+
+    PdfProcessor() {
+        models = new ArrayList<>();
+        models.add(NAME_FIELD);
+        models.add(SURNAME_FIELD);
+        models.add(DATA_FIELD);
+        models.add(MALE_FIELD);
+        models.add(FAVORITE_PORN_FIELD);
     }
 
-    private String processLine(String line) {
-        return insertToLine(line, "WI12312323112312321312");
+    @Override
+    public HashMap<Integer, FieldModels> process(String path) {
+        readAndProcessDocument(path);
+        return fields;
     }
 
-    private String insertToLine(String line, String value) {
+    @Override
+    public void writeToLine(int lineIndex, String value) {
+        documentLines.set(lineIndex, insertToLine(documentLines.get(lineIndex), value));
+    }
+
+    @Override
+    public void writeDocument() {
+        Document document = new Document();
+
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("resultDocument.pdf"));
+        } catch (DocumentException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        document.open();
+
+        Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16, BaseColor.BLACK);
+
+        for (String line : documentLines) {
+            try {
+                document.add(new Paragraph(line, font));
+            } catch (DocumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        document.close();
+    }
+
+    private void readAndProcessDocument(String path) {
+        PdfReader reader = null;
+        try {
+            reader = new PdfReader(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        documentLines = new ArrayList<>();
+
+        assert reader != null;
+        for (int i = 1; i <= reader.getNumberOfPages(); ++i) {
+            TextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
+            String text = null;
+            try {
+                text = PdfTextExtractor.getTextFromPage(reader, i, strategy);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            int count = 0;
+
+            assert text != null;
+            for (String line : text.split("\n")) {
+                documentLines.add(line);
+
+                FieldModels model = processLine(line);
+                if (model != null) {
+                    fields.put(count, model);
+                }
+                count++;
+            }
+        }
+        reader.close();
+    }
+
+    @Nullable
+    private FieldModels processLine(@NotNull String line) {
+        //BAD HARDCODE
+        for (FieldModels model : models) {
+            for (String keyWord : model.getValues()) {
+                if (line.contains(keyWord + " _")) {
+                    return model;
+                }
+            }
+        }
+        return null;
+    }
+
+    private String insertToLine(@NotNull String line, @NotNull String value) {
         ArrayList<Character> arrayValue = new ArrayList<>();
         for (Character ch : value.toCharArray()) {
             arrayValue.add(ch);
@@ -46,43 +140,6 @@ class PdfProcessor {
         }
 
         return line;
-    }
-
-    private ArrayList<String> readAndProcessDocument(String path) throws IOException {
-        PdfReader reader = new PdfReader(path);
-
-        ArrayList<String> parsedDocument = new ArrayList<>();
-
-        for (int i = 1; i <= reader.getNumberOfPages(); ++i) {
-            TextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
-            String text = PdfTextExtractor.getTextFromPage(reader, i, strategy);
-
-            for (String line : text.split("\n")) {
-                parsedDocument.add(processLine(line));
-            }
-        }
-
-        // убираем за собой
-        reader.close();
-
-        return parsedDocument;
-    }
-
-    private void writeDocument(ArrayList<String> lines) throws IOException, DocumentException {
-        Document document = new Document();
-
-        PdfWriter.getInstance(document, new FileOutputStream("resultDocument.pdf"));
-
-        document.open();
-
-        Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16, BaseColor.BLACK);
-
-        for (String line : lines) {
-            //document.add(new Chunk(line, font));
-            document.add(new Paragraph(line, font));
-        }
-
-        document.close();
     }
 
 }

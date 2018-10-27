@@ -3,6 +3,7 @@ package com.hackdocs.pfd;
 import com.itextpdf.text.DocumentException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Temple {
 
@@ -10,7 +11,7 @@ public class Temple {
 
         PdfProcessor processor = new PdfProcessor();
 
-        processor.process("src/main/resources/pdf/example2.pdf");
+        //ArrayList<FieldModels> models = processor.process("src/main/resources/pdf/example3.pdf");
 
     }
 
