@@ -62,24 +62,24 @@
     <tr>
         <th scope="row"><%=i%>
         </th>
-        <td><%=document.getFieldByType(FieldType.NAME)%>
+        <td><%=document.getFieldByType(FieldType.NAME).getValue()%>
         </td>
-        <td><%=document.getFieldByType(FieldType.LASTNAME)%>
+        <td><%=document.getFieldByType(FieldType.LASTNAME).getValue()%>
         </td>
-        <td><%=document.getFieldByType(FieldType.COUNTRY)%>
+        <td><%=document.getFieldByType(FieldType.COUNTRY).getValue()%>
         </td>
-        <td><%=document.getFieldByType(FieldType.CITY)%>
+        <td><%=document.getFieldByType(FieldType.CITY).getValue()%>
         </td>
-        <td><%=document.getFieldByType(FieldType.CELL_PHONE)%>
+        <td><%=document.getFieldByType(FieldType.CELL_PHONE).getValue()%>
         </td>
-        <td><%=document.getFieldByType(FieldType.EMAIL)%>
+        <td><%=document.getFieldByType(FieldType.EMAIL).getValue()%>
         </td>
-        <td><%=document.getFieldByType(FieldType.DEPARTURE_DATE)%>
+        <td><%=document.getFieldByType(FieldType.DEPARTURE_DATE).getValue()%>
         </td>
-        <td><%=document.getFieldByType(FieldType.DEPARTURE_TIME)%>
+        <td><%=document.getFieldByType(FieldType.DEPARTURE_TIME).getValue()%>
         </td>
         <td>
-            <link rel="open file" href="<%=document.getFieldByType(FieldType.DEPARTURE_TIME)%>">
+            <link rel="open file" href="<%=document.getPdf()%>">
         </td>
     </tr>
     <%
