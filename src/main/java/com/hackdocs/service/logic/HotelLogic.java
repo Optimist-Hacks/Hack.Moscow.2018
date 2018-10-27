@@ -139,6 +139,7 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
         if (firstName != null) {
             changeState(session, State.LAST_NAME);
             session.getDocument().getFieldByType(NAME).setValue(firstName);
+            logger.info("Я ЗАЛОГГИРОВАЛ ИМЯ ЛЮБИМОЕ ТВОЁ:  " + session.getDocument().getFieldByType(NAME).getValue());
             return "Ok. Now, please enter last name";
         } else {
             return "This is not a name. Try again";
