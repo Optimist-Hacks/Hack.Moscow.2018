@@ -164,7 +164,7 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
             changeState(session, State.TERMINATED);
             session.getDocument().getFieldByType(DEPARTURE_TIME).setValue(text);
             String file = buildPDF(session);
-            return "Ok. That's all foks! Here is your file:\n" + file;
+            return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/pdf/%s", file);
         } else {
             return "This is not a time. Try again";
         }
