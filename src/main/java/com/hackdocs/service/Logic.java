@@ -46,7 +46,8 @@ public class Logic {
         logger.info("Session = " + session);
 
         String response;
-        if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME) || !sessions.containsKey(session)) {
+        if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME)) {
+            logger.info(GOOGLE_ASSISTANT_WELCOME);
             response = processWelcomeMessage(session);
         } else {
             response = processDataMessage(request, session);
@@ -60,7 +61,7 @@ public class Logic {
     }
 
     private String processDataMessage(Request request, String sessionId) {
-        String response = null;
+        String response;
         String queryText = request.getQueryResult().getQueryText();
         logger.info("Full text = " + queryText);
 
@@ -69,6 +70,8 @@ public class Logic {
         if (currSession != null) {
             FlowLogic flow = currSession.getFlow();
             response = flow.processRequest(queryText, currSession);
+        } else {
+            response = processWelcomeMessage(sessionId);
         }
 
         if (RocketText.isEmpty(response)) {
@@ -93,7 +96,10 @@ public class Logic {
                         break;
                 }
             }
-            sessions.put(sessionId, currSession);
+
+            if (currSession != null) {
+                sessions.put(sessionId, currSession);
+            }
         } else {
             logger.info("We already have this session");
         }
@@ -124,10 +130,9 @@ public class Logic {
         return "Please call Alexander!!!";
     }
 
-    private String processWelcomeMessage(String session) {
-        logger.info(GOOGLE_ASSISTANT_WELCOME);
-        logger.info("Remove session " + session);
-        sessions.remove(session);
+    private String processWelcomeMessage(String sessionId) {
+        logger.info("Remove session " + sessionId);
+        sessions.remove(sessionId);
         return defaultWelcomeText();
     }
 
