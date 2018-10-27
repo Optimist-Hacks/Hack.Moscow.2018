@@ -39,13 +39,15 @@ public class GoogleController {
         Response response = logic.processRequest(request);
         logger.info("Send response = " + response);
 
-        return responseHelper.ok("\"messages\": [\n" +
-                "  {\n" +
-                "    \"platform\": \"facebook\",\n" +
-                "    \"speech\": \"Text response\",\n" +
-                "    \"type\": 0\n" +
-                "  }\n" +
-                "]");
+        return responseHelper.ok("{\n" +
+                "   \"messages\":[\n" +
+                "      {\n" +
+                "         \"platform\":\"facebook\",\n" +
+                "         \"speech\":\"Text response\",\n" +
+                "         \"type\":0\n" +
+                "      }\n" +
+                "   ]\n" +
+                "}");
     }
 
 }
