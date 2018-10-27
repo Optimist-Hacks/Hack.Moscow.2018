@@ -33,16 +33,14 @@ public class GoogleController {
                 "  \"payload\": {\n" +
                 "    \"google\": {\n" +
                 "      \"expectUserResponse\": true,\n" +
-                "      \"systemIntent\": {\n" +
-                "        \"intent\": \"actions.intent.DATETIME\",\n" +
-                "        \"data\": {\n" +
-                "          \"@type\": \"type.googleapis.com/google.actions.v2.DateTimeValueSpec\",\n" +
-                "          \"dialogSpec\": {\n" +
-                "            \"requestDatetimeText\": \"When do you want to come in?\",\n" +
-                "            \"requestDateText\": \"What is the best date to schedule your appointment?\",\n" +
-                "            \"requestTimeText\": \"What time of day works best for you?\"\n" +
+                "      \"richResponse\": {\n" +
+                "        \"items\": [\n" +
+                "          {\n" +
+                "            \"simpleResponse\": {\n" +
+                "              \"textToSpeech\": \"this is a simple response\"\n" +
+                "            }\n" +
                 "          }\n" +
-                "        }\n" +
+                "        ]\n" +
                 "      }\n" +
                 "    }\n" +
                 "  }\n" +
