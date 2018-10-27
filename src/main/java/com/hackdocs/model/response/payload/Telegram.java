@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class Telegram {
 
-    public String text = "http://images.math.cnrs.fr/IMG/png/section8-image.png";
+    public String text;
 
-//    public String imageUrl = "http://images.math.cnrs.fr/IMG/png/section8-image.png";
+    public String imageUrl = "http://images.math.cnrs.fr/IMG/png/section8-image.png";
 
 //    public List<Message> messages = Collections.singletonList(new Message("telegram"));
 
@@ -20,7 +20,7 @@ public class Telegram {
 //            "]";
 
     public Telegram(String text) {
-//        this.text = text;
+        this.text = text;
     }
 
 }
