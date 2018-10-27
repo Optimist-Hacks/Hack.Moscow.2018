@@ -1,9 +1,11 @@
 package com.hackdocs.model.businessModels;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class Field {
 
     FieldType type;

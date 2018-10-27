@@ -5,6 +5,7 @@ import com.hackdocs.model.Request;
 import com.hackdocs.model.Response;
 import com.hackdocs.model.response.Payload;
 import com.hackdocs.model.response.payload.Google;
+import com.hackdocs.model.response.payload.Telegram;
 import com.hackdocs.model.response.payload.google.RichResponse;
 import com.hackdocs.model.response.payload.google.richResponse.Item;
 import com.hackdocs.model.response.payload.google.richResponse.item.SimpleResponse;
@@ -40,18 +41,21 @@ public class Logic {
         String session = request.getSession();
         logger.info("Session = " + session);
 
+        String response;
         if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME)) {
-            return processWelcomeMessage(session);
+            response = processWelcomeMessage(session);
+        } else {
+            response = processDataMessage(request, session);
         }
 
-//        if (RocketText.safeEqualsIgnoreCase(request.getOriginalDetectIntentRequest().getSource(), "TELEGRAM")) {
-//            return
-//        }
-
-        return processDataMessage(request, session);
+        if (RocketText.safeEqualsIgnoreCase(request.getOriginalDetectIntentRequest().getSource(), TELEGRAM)) {
+            return buildTelegramResponse(response);
+        } else {
+            return buildGoogleResponse(response);
+        }
     }
 
-    private Response processDataMessage(Request request, String sessionId) {
+    private String processDataMessage(Request request, String sessionId) {
         String response = null;
         String queryText = request.getQueryResult().getQueryText();
         logger.info("Full text = " + queryText);
@@ -67,7 +71,7 @@ public class Logic {
             response = defaultWrongText();
         }
 
-        return buildResponse(response);
+        return response;
     }
 
     private Session obtainSession(String sessionId, String queryText) {
@@ -90,12 +94,18 @@ public class Logic {
         return currSession;
     }
 
-    private Response buildResponse(String text) {
+    private Response buildGoogleResponse(String text) {
         SimpleResponse simpleResponse = new SimpleResponse(text);
         Item item = new Item(simpleResponse);
         RichResponse richResponse = new RichResponse(Collections.singletonList(item));
         Google google = new Google(true, richResponse);
         Payload payload = new Payload(google);
+        return new Response(payload);
+    }
+
+    private Response buildTelegramResponse(String text) {
+        Telegram telegram = new Telegram(text);
+        Payload payload = new Payload(telegram);
         return new Response(payload);
     }
 
@@ -107,12 +117,11 @@ public class Logic {
         return "Please call Alexander!!!";
     }
 
-    private Response processWelcomeMessage(String session) {
+    private String processWelcomeMessage(String session) {
         logger.info(GOOGLE_ASSISTANT_WELCOME);
         logger.info("Remove session " + session);
         sessions.remove(session);
-        return buildResponse(defaultWelcomeText());
+        return defaultWelcomeText();
     }
-
 
 }
