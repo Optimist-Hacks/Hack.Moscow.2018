@@ -26,7 +26,7 @@ public class Logic {
     private static Logger logger = LoggerFactory.getLogger(Logic.class);
     private static final String GOOGLE_ASSISTANT_WELCOME = "GOOGLE_ASSISTANT_WELCOME";
 
-    private final Map<String, SessionState> sessions = new HashMap<>();
+    private final Map<String, Session> sessions = new HashMap<>();
 
     private final VacationLogic vacationLogic;
 
@@ -46,35 +46,42 @@ public class Logic {
         return processDataMessage(request, session);
     }
 
-    private Response processDataMessage(Request request, String session) {
-        String response = null;
-        String text = request.getQueryResult().getQueryText();
-        logger.info("Full text = " + text);
+    private Response processDataMessage(Request request, String sessionId) {
+        String response;
+        String queryText = request.getQueryResult().getQueryText();
+        logger.info("Full text = " + queryText);
 
-        SessionState sessionState = sessions.get(session);
-        if (sessionState == null) {
-            logger.info("This is new session");
-            Flow flow = Flow.fromValue(text);
-            if (flow != null) {
-                switch (flow) {
-                    case VACATION:
-                        sessionState = new SessionState(vacationLogic.getInitState(), vacationLogic);
-                        response = vacationLogic.processRequest(text, sessionState);
-                        break;
-                }
-            }
-            sessions.put(session, sessionState);
-        } else {
-            logger.info("We already have this session");
-            FlowLogic flow = sessionState.getFlow();
-            response = flow.processRequest(text, sessionState);
-        }
+        Session currSession = obtainSession(sessionId, queryText);
+
+        FlowLogic flow = currSession.getFlow();
+        response = flow.processRequest(queryText, currSession);
+
 
         if (RocketText.isEmpty(response)) {
             response = defaultWrongText();
         }
 
         return buildResponse(response);
+    }
+
+    private Session obtainSession(String sessionId, String queryText) {
+        Session currSession = sessions.get(sessionId);
+        if (currSession == null) {
+            logger.info("This is new session");
+            Flow flow = Flow.fromValue(queryText);
+            if (flow != null) {
+                switch (flow) {
+                    case VACATION:
+                        currSession = new Session(vacationLogic.getInitState(), vacationLogic);
+                        break;
+                }
+            }
+            sessions.put(sessionId, currSession);
+        } else {
+            logger.info("We already have this session");
+        }
+
+        return currSession;
     }
 
     private Response buildResponse(String text) {
