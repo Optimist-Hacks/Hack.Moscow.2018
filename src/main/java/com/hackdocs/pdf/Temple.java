@@ -4,21 +4,16 @@ import com.hackdocs.model.businessModels.Document;
 import com.hackdocs.model.businessModels.Field;
 import com.hackdocs.model.businessModels.FieldProperties;
 import com.hackdocs.model.businessModels.FieldType;
-import com.itextpdf.text.DocumentException;
+import com.hackdocs.service.PdfService;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Temple {
-    public static void main(String[] args) throws IOException, DocumentException {
 
-        PdfProcessor processor = new PdfProcessor();
+    public static void main(String[] args) {
+        PdfService processor = new PdfService();
         Document document = createHotelRegistrationApplication();
-
         processor.fillDocument(document);
-
-
-
     }
 
     private static Document createHotelRegistrationApplication() {
@@ -31,7 +26,7 @@ public class Temple {
                 new FieldProperties(160,645,1,30)
         ));
         fields.add(new Field(
-                FieldType.FAMILYNAME,
+                FieldType.LASTNAME,
                 "Family name",
                 new FieldProperties(390,645,1,30)
         ));

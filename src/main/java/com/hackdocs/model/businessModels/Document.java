@@ -10,4 +10,12 @@ public class Document {
     int lineWidth;
     String fileLink;
     String id = "123";
+
+    public Field getFieldByType(FieldType type) {
+        return fields.stream()
+                .filter((field -> field.type.equals(type)))
+                .findFirst()
+                .orElseThrow(NoSuchFieldError::new);
+    }
+
 }
