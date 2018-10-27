@@ -12,6 +12,11 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
 
     @Override
     public String process(String text, Session<State> session) {
+
+        if (text.toLowerCase().equals("cancel")) {
+            session.setLogicState(State.INIT);
+        }
+
         switch (session.getLogicState()) {
             case INIT:
                 return handleInit(session);
