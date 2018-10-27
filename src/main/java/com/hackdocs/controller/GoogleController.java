@@ -39,7 +39,7 @@ public class GoogleController {
         Request request = objectMapper.readValue(payload, Request.class);
 
         Response response = logic.processRequest(request);
-        logger.info("Send response = " + objectMapper.writeValueAsString(request));
+        logger.info("Send response = " + objectMapper.writeValueAsString(response));
 
         return responseHelper.ok(response);
     }
