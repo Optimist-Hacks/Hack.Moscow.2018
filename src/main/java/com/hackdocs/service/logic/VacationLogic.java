@@ -1,5 +1,6 @@
 package com.hackdocs.service.logic;
 
+import com.hackdocs.model.Request;
 import com.hackdocs.service.Session;
 import com.hackdocs.service.flow.FlowLogic;
 import com.hackdocs.validators.Validator;
@@ -9,19 +10,23 @@ import org.springframework.stereotype.Service;
 public class VacationLogic extends FlowLogic<VacationLogic.State> {
 
     @Override
-    public String process(String text, Session<State> state) {
+    protected String process(Request request, Session<State> state) {
         switch (state.getLogicState()) {
             case INIT:
                 return handleInit(state);
             case FIRST_NAME:
-                return handleFirstName(text, state);
+                return handleFirstName(getRequestPlainText(request), state);
             case LAST_NAME:
-                return handleLastName(text, state);
+                return handleLastName(getRequestPlainText(request), state);
             case DATE:
-                return handleDate(text, state);
+                return handleDate(getRequestPlainText(request), state);
         }
 
         return defaultResponse();
+    }
+
+    private String getRequestPlainText(Request request) {
+        return request.getQueryResult().getQueryText();
     }
 
     private String handleInit(Session<State> state) {
