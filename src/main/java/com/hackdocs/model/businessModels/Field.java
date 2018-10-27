@@ -1,5 +1,9 @@
 package com.hackdocs.model.businessModels;
 
+
+import lombok.Data;
+
+@Data
 public class Field {
 
     FieldType type;
