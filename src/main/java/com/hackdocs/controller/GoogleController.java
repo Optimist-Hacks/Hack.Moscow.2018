@@ -23,6 +23,7 @@ public class GoogleController {
     private static Logger logger = LoggerFactory.getLogger(GoogleController.class);
     private final ResponseHelper responseHelper;
     private final Logic logic;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     public GoogleController(ResponseHelper responseHelper, Logic logic) {
@@ -33,8 +34,6 @@ public class GoogleController {
     @PostMapping("")
     public ResponseEntity<Response> process(@RequestBody String payload) throws IOException {
         logger.info("Receive google request payload = " + payload);
-
-        ObjectMapper objectMapper = new ObjectMapper();
 
         Request request = objectMapper.readValue(payload, Request.class);
 
