@@ -92,9 +92,9 @@ public class PdfService {
         ArrayList<String> result = new ArrayList<>();
         int maxLength = field.getProperties().getMaxLength();
         String value = field.getValue();
-        if (field.getType() == FieldType.DEPARTURE_TIME || field.getType() == FieldType.ARRIVAL_TIME) {
+        if (field.getType() == FieldType.DEPARTURE_TIME) {
             value = DateUtils.formatTime(value);
-        } else if (field.getType() == FieldType.DEPARTURE_DATE || field.getType() == FieldType.ARRIVAL_DATE) {
+        } else if (field.getType() == FieldType.DEPARTURE_DATE) {
             value = DateUtils.formatDate(value);
         }
         for (int i = 0; i < field.getProperties().getNumbOfLines(); i++) {
