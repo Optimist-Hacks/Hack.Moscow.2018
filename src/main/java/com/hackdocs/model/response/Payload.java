@@ -11,6 +11,8 @@ public class Payload {
 
     public Telegram telegram;
 
+
+
     public Payload(Google google) {
         this.google = google;
     }
