@@ -7,6 +7,7 @@ public class Session<State extends Enum> {
     private State logicState;
     private FlowLogic flow;
 
+
     public Session(State state, FlowLogic flow) {
         this.logicState = state;
         this.flow = flow;
