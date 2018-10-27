@@ -30,6 +30,10 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>mavenCentral</id>
+            <url>http://central.maven.org/maven2/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -94,6 +98,19 @@
             <artifactId>gactions</artifactId>
             <version>0.2.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.0.6</version>
+        </dependency>
+
 
     </dependencies>
 
