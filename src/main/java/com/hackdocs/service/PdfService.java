@@ -49,13 +49,15 @@ public class PdfService {
 
 
         for (Field field : document.getFields()) {
-            ArrayList<String> lines = fieldLines(field);
-            for (int lineIndex = 0; lineIndex < field.getProperties().getNumbOfLines(); lineIndex++) {
-                over.beginText();
-                over.setFontAndSize(font, 10);
-                over.setTextMatrix(field.getProperties().getXCoord(), field.getProperties().getYCoord() - 15 * lineIndex);
-                over.showText(lines.get(lineIndex));
-                over.endText();
+            if (field.getValue() != null) {
+                ArrayList<String> lines = fieldLines(field);
+                for (int lineIndex = 0; lineIndex < field.getProperties().getNumbOfLines(); lineIndex++) {
+                    over.beginText();
+                    over.setFontAndSize(font, 10);
+                    over.setTextMatrix(field.getProperties().getXCoord(), field.getProperties().getYCoord() - 15 * lineIndex);
+                    over.showText(lines.get(lineIndex));
+                    over.endText();
+                }
             }
         }
 

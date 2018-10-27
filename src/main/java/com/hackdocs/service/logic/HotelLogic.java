@@ -19,7 +19,7 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
 
     @Override
     public String process(Request request, Session<State> session) {
-        logger.info("СЫРОЙ КВЕРИ ТЕКСТ ДЛЯ СТЕПЫ, ВОЗЬМИТЕ ПОЖАЛУЙСТА" + request.getQueryResult().getQueryText().toLowerCase());
+        logger.info("СЫРОЙ КВЕРИ ТЕКСТ ДЛЯ СТЕПЫ, ВОЗЬМИТЕ ПОЖАЛУЙСТА " + request.getQueryResult().getQueryText().toLowerCase());
         if (request.getQueryResult().getQueryText().toLowerCase().equals("cancel")) {
             session.setLogicState(State.INIT);
         }
