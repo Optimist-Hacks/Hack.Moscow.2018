@@ -3,11 +3,18 @@ package com.hackdocs.service;
 import com.github.otopba.javarocketstart.RocketText;
 import com.hackdocs.Flow;
 import com.hackdocs.model.Request;
+import com.hackdocs.model.Response;
+import com.hackdocs.model.response.Payload;
+import com.hackdocs.model.response.payload.Google;
+import com.hackdocs.model.response.payload.google.RichResponse;
+import com.hackdocs.model.response.payload.google.richResponse.Item;
+import com.hackdocs.model.response.payload.google.richResponse.item.SimpleResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,16 +33,17 @@ public class Logic {
         this.vocationLogic = vocationLogic;
     }
 
-    public String processRequest(Request request) {
+    public Response processRequest(Request request) {
         String session = request.getSession();
         logger.info("Session = " + session);
 
         if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME)) {
             logger.info("GOOGLE_ASSISTANT_WELCOME");
             sessions.remove(session);
-            return defaultWelcomeText();
+            return buildResponse(defaultWelcomeText());
         }
 
+        String response = null;
         String text = request.getQueryResult().getQueryText();
         logger.info("Full text = " + text);
 
@@ -46,54 +54,36 @@ public class Logic {
                 switch (flow) {
                     case VOCATION:
                         sessionState = new SessionState(vocationLogic.getInitState(), vocationLogic);
-                        return vocationLogic.processRequest(text, sessionState.getLogicState());
+                        buildResponse(vocationLogic.processRequest(text, sessionState));
+                        break;
                 }
             }
         } else {
-            Enum logicState = sessionState.getLogicState();
             AbstractFlow flow = sessionState.getFlow();
-            return flow.processRequest(text, logicState);
+            response = flow.processRequest(text, sessionState);
         }
 
-        return defaultWrongText();
+        if (RocketText.isEmpty(response)) {
+            response = defaultWrongText();
+        }
+        return buildResponse(response);
+    }
+
+    private Response buildResponse(String text) {
+        SimpleResponse simpleResponse = new SimpleResponse(text);
+        Item item = new Item(simpleResponse);
+        RichResponse richResponse = new RichResponse(Collections.singletonList(item));
+        Google google = new Google(true, richResponse);
+        Payload payload = new Payload(google);
+        return new Response(payload);
     }
 
     private String defaultWelcomeText() {
-        return "{\n" +
-                "  \"payload\": {\n" +
-                "    \"google\": {\n" +
-                "      \"expectUserResponse\": true,\n" +
-                "      \"richResponse\": {\n" +
-                "        \"items\": [\n" +
-                "          {\n" +
-                "            \"simpleResponse\": {\n" +
-                "              \"textToSpeech\": \"this is a simple response\"\n" +
-                "            }\n" +
-                "          }\n" +
-                "        ]\n" +
-                "      }\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
+        return "Hello! This is our cool bot. Please choose document";
     }
 
     private String defaultWrongText() {
-        return "{\n" +
-                "  \"payload\": {\n" +
-                "    \"google\": {\n" +
-                "      \"expectUserResponse\": true,\n" +
-                "      \"richResponse\": {\n" +
-                "        \"items\": [\n" +
-                "          {\n" +
-                "            \"simpleResponse\": {\n" +
-                "              \"textToSpeech\": \"this is a simple response\"\n" +
-                "            }\n" +
-                "          }\n" +
-                "        ]\n" +
-                "      }\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
+        return "Please call Alexander!!!";
     }
 
 }

@@ -7,4 +7,8 @@ public class SimpleResponse {
 
     public String textToSpeech;
 
+    public SimpleResponse(String textToSpeech) {
+        this.textToSpeech = textToSpeech;
+    }
+
 }

@@ -14,4 +14,9 @@ public class Response {
 //    List<OutputContext> outputContexts;
 //    FollowupEventInput followupEventInput;
 
+
+    public Response(Payload payload) {
+        this.payload = payload;
+    }
+
 }

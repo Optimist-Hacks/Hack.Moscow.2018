@@ -2,6 +2,7 @@ package com.hackdocs.controller;
 
 import com.hackdocs.ResponseHelper;
 import com.hackdocs.model.Request;
+import com.hackdocs.model.Response;
 import com.hackdocs.service.Logic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,10 +28,10 @@ public class GoogleController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> process(@RequestBody Request request) {
+    public ResponseEntity<Response> process(@RequestBody Request request) {
         logger.info("Receive google request payload = " + request);
 
-        String response = logic.processRequest(request);
+        Response response = logic.processRequest(request);
         logger.info("Send response = " + response);
 
         return responseHelper.ok(logic.processRequest(request));

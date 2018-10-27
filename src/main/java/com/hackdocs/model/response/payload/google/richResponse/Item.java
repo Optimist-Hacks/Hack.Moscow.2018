@@ -8,4 +8,8 @@ public class Item {
 
     public SimpleResponse simpleResponse;
 
+    public Item(SimpleResponse simpleResponse) {
+        this.simpleResponse = simpleResponse;
+    }
+
 }

@@ -10,4 +10,8 @@ public class RichResponse {
 
     public List<Item> items = null;
 
+    public RichResponse(List<Item> items) {
+        this.items = items;
+    }
+
 }

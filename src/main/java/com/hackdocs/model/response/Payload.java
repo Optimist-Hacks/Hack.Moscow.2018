@@ -8,4 +8,8 @@ public class Payload {
 
     public Google google;
 
+    public Payload(Google google) {
+        this.google = google;
+    }
+
 }

@@ -6,25 +6,14 @@ import org.springframework.stereotype.Service;
 public class VocationLogic extends AbstractFlow<VocationLogic.State> {
 
     @Override
-    public String processRequest(String text, VocationLogic.State state) {
-        switch (state) {
+    public String processRequest(String text, SessionState<VocationLogic.State> state) {
+        switch (state.getLogicState()) {
             case INIT:
-                return "{\n" +
-                        "  \"payload\": {\n" +
-                        "    \"google\": {\n" +
-                        "      \"expectUserResponse\": true,\n" +
-                        "      \"richResponse\": {\n" +
-                        "        \"items\": [\n" +
-                        "          {\n" +
-                        "            \"simpleResponse\": {\n" +
-                        "              \"textToSpeech\": \"this is a simple response\"\n" +
-                        "            }\n" +
-                        "          }\n" +
-                        "        ]\n" +
-                        "      }\n" +
-                        "    }\n" +
-                        "  }\n" +
-                        "}";
+                changeState(state, State.FIRST_NAME);
+                return "Hello! You want to create vocation document. What is your name?";
+            case LAST_NAME:
+                changeState(state, State.LAST_NAME);
+                return "OK!";
         }
 
         return defaultResponse();
@@ -36,26 +25,13 @@ public class VocationLogic extends AbstractFlow<VocationLogic.State> {
     }
 
     private String defaultResponse() {
-        return "{\n" +
-                "  \"payload\": {\n" +
-                "    \"google\": {\n" +
-                "      \"expectUserResponse\": true,\n" +
-                "      \"richResponse\": {\n" +
-                "        \"items\": [\n" +
-                "          {\n" +
-                "            \"simpleResponse\": {\n" +
-                "              \"textToSpeech\": \"this is a simple response\"\n" +
-                "            }\n" +
-                "          }\n" +
-                "        ]\n" +
-                "      }\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
+        return "OH MY GOD";
     }
 
     public enum State {
-        INIT
+        INIT,
+        FIRST_NAME,
+        LAST_NAME,
     }
 
 }

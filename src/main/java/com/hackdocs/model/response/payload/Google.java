@@ -9,4 +9,9 @@ public class Google {
     public Boolean expectUserResponse;
     public RichResponse richResponse;
 
+    public Google(Boolean expectUserResponse, RichResponse richResponse) {
+        this.expectUserResponse = expectUserResponse;
+        this.richResponse = richResponse;
+    }
+
 }
