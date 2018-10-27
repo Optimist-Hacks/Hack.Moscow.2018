@@ -1,5 +1,6 @@
 package com.hackdocs.controller;
 
+import com.hackdocs.model.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +15,8 @@ public class GoogleController {
     private static Logger logger = LoggerFactory.getLogger(GoogleController.class);
 
     @PostMapping("")
-    public void process(@RequestBody String payload) {
-        logger.info("Receive google request payload = " + payload);
+    public void process(@RequestBody Request request) {
+        logger.info("Receive google request payload = " + request);
     }
 
 }
