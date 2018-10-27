@@ -11,13 +11,14 @@ import com.itextpdf.text.pdf.PdfStamper;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-class PdfProcessor {
+class PdfProcessor implements BasePdfProcessor {
 
+    @Override
     public void fillDocument(Document document) {
 
 
         PdfStamper stamper = null;
-        PdfReader reader = null;
+        PdfReader reader;
         BaseFont font = null;
 
         try {
@@ -40,7 +41,7 @@ class PdfProcessor {
                 over.beginText();
                 over.setFontAndSize(font, 10);
                 over.setTextMatrix(field.getProperties().getXCoord()
-                        , field.getProperties().getYCoord() + 15*lineIndex);
+                        , field.getProperties().getYCoord() - 15*lineIndex);
                 over.showText(field.getValue());
                 over.endText();
             }
