@@ -4,12 +4,14 @@ package com.hackdocs.model.request;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+import java.util.Map;
+
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class QueryResult {
 
     String queryText;
-//    Map<String, String> parameters;
+    Map<String, String> parameters;
 //    Boolean allRequiredParamsPresent;
 //    String fulfillmentText;
 //    List<FulfillmentMessage> fulfillmentMessages;
