@@ -38,12 +38,13 @@ public class Logic {
         logger.info("Session = " + session);
 
         if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME)) {
-            logger.info(GOOGLE_ASSISTANT_WELCOME);
-            logger.info("Remove session " + session);
-            sessions.remove(session);
-            return buildResponse(defaultWelcomeText());
+            return processWelcomeMessage(session);
         }
 
+        return processDataMessage(request, session);
+    }
+
+    private Response processDataMessage(Request request, String session) {
         String response = null;
         String text = request.getQueryResult().getQueryText();
         logger.info("Full text = " + text);
@@ -70,6 +71,7 @@ public class Logic {
         if (RocketText.isEmpty(response)) {
             response = defaultWrongText();
         }
+
         return buildResponse(response);
     }
 
@@ -89,5 +91,13 @@ public class Logic {
     private String defaultWrongText() {
         return "Please call Alexander!!!";
     }
+
+    private Response processWelcomeMessage(String session) {
+        logger.info(GOOGLE_ASSISTANT_WELCOME);
+        logger.info("Remove session " + session);
+        sessions.remove(session);
+        return buildResponse(defaultWelcomeText());
+    }
+
 
 }
