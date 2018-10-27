@@ -11,23 +11,23 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @RestController
-@RequestMapping(value = "/api/v1/pdf")
-public class PdfController {
+@RequestMapping(value = "/api/v1/png")
+public class PngController {
 
-    private static Logger logger = LoggerFactory.getLogger(PdfController.class);
-    private static final String APPLICATION_PDF = "application/pdf";
+    private static Logger logger = LoggerFactory.getLogger(PngController.class);
+    private static final String IMAGE_PNG = "image/png";
 
     private final PdfService pdfService;
 
     @Autowired
-    public PdfController(PdfService pdfService) {
+    public PngController(PdfService pdfService) {
         this.pdfService = pdfService;
     }
 
     @ResponseBody
-    @RequestMapping(value = "{path}", method = RequestMethod.GET, produces = APPLICATION_PDF)
-    public byte[] getPdf(@PathVariable String path) throws IOException {
-        logger.info("Receive pdf request path = " + path);
+    @RequestMapping(value = "{path}", method = RequestMethod.GET, produces = IMAGE_PNG)
+    public byte[] getPng(@PathVariable String path) throws IOException {
+        logger.info("Receive png request path = " + path);
         Path document = pdfService.getDocument(path);
         return Files.readAllBytes(document);
     }
