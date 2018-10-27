@@ -123,6 +123,7 @@ public class Logic {
         Telegram telegram = new Telegram(text);
         Payload payload = new Payload(telegram);
         FollowupEventInput followupEventInput = new FollowupEventInput();
+        followupEventInput.name = "Cell phone";
         return new Response(payload, followupEventInput);
     }
 
