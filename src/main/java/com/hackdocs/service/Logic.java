@@ -59,6 +59,7 @@ public class Logic {
                         break;
                 }
             }
+            sessions.put(session, sessionState);
         } else {
             logger.info("We already have this session");
             AbstractFlow flow = sessionState.getFlow();
