@@ -1,5 +1,6 @@
 package com.hackdocs.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hackdocs.ResponseHelper;
 import com.hackdocs.model.Request;
 import com.hackdocs.model.Response;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping(value = "/api/v1/google")
@@ -28,8 +31,10 @@ public class GoogleController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Response> process(@RequestBody Request request) {
-        logger.info("Receive google request payload = " + request);
+    public ResponseEntity<Response> process(@RequestBody String payload) throws IOException {
+        logger.info("Receive google request payload = " + payload);
+
+        Request request = new ObjectMapper().readValue(payload, Request.class);
 
         Response response = logic.processRequest(request);
         logger.info("Send response = " + response);
