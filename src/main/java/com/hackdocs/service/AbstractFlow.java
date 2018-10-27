@@ -7,11 +7,11 @@ public abstract class AbstractFlow<State extends Enum> {
 
     protected static Logger logger = LoggerFactory.getLogger(AbstractFlow.class);
 
-    public abstract String processRequest(String text, SessionState<State> state);
+    protected abstract String process(String text, SessionState<State> state);
 
-    private String innerProcessRequest(String text, SessionState<State> state) {
+    public String processRequest(String text, SessionState<State> state) {
         logger.info("Process state " + state);
-        return processRequest(text, state);
+        return process(text, state);
     }
 
     public void changeState(SessionState<State> state, State newState) {

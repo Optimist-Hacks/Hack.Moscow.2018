@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public class VocationLogic extends AbstractFlow<VocationLogic.State> {
 
     @Override
-    public String processRequest(String text, SessionState<VocationLogic.State> state) {
+    public String process(String text, SessionState<VocationLogic.State> state) {
         switch (state.getLogicState()) {
             case INIT:
                 changeState(state, State.FIRST_NAME);
