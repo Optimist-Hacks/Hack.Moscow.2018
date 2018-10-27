@@ -23,14 +23,15 @@ public abstract class FlowLogic<State extends Enum> {
         return process(request, session);
     }
 
-    public void changeState(Session<State> state, State newState) {
+    public static <State extends Enum> void changeState(Session<State> state, State newState) {
         state.setLogicState(newState);
     }
 
     public abstract State getInitState();
 
-    protected Image buildPDF(Session<State> session) {
+    public Image buildPDF(Session<State> session) {
         return pdfService.fillDocument(session.getDocument());
     }
+
 
 }
