@@ -1,15 +1,21 @@
 package com.hackdocs.service.logic;
 
 import com.hackdocs.model.Request;
+import com.hackdocs.model.businessModels.Document;
 import com.hackdocs.service.Session;
 import com.hackdocs.service.flow.FlowLogic;
 import com.hackdocs.validators.Validator;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.hackdocs.model.businessModels.FieldType.*;
 
 @Service
 public class HotelLogic extends FlowLogic<HotelLogic.State> {
+
+    public static final List<Document> COMPLETED_DOCUMENTS = new ArrayList<>();
 
     @Override
     public String process(Request request, Session<State> session) {
@@ -223,17 +229,16 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
             changeState(session, State.TERMINATED);
             session.getDocument().getFieldByType(DEPARTURE_TIME).setValue(depTime);
             String file = buildPDF(session);
+            COMPLETED_DOCUMENTS.add(session.getDocument());
             return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/pdf/%s", file);
         } else {
             return "This is not a time. Try again";
         }
     }
 
-
     private String getRequestPlainText(Request request) {
         return request.getQueryResult().getQueryText();
     }
-
 
     @Override
     public State getInitState() {

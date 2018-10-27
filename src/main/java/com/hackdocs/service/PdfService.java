@@ -65,14 +65,16 @@ public class PdfService {
             logger.error("error", e);
         }
 
-        return path.getFileName().toString();
+        String fileName = path.getFileName().toString();
+        document.setPdf(fileName);
+        return fileName;
     }
 
     private ArrayList<String> fieldLines(Field field) {
         ArrayList<String> result = new ArrayList<>();
         int maxLength = field.getProperties().getMaxLength();
         String value = field.getValue();
-        for (int i=0; i<field.getProperties().getNumbOfLines(); i++) {
+        for (int i = 0; i < field.getProperties().getNumbOfLines(); i++) {
             if (value.length() <= maxLength) {
                 result.add(value);
                 break;
