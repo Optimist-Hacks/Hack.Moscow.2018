@@ -34,10 +34,12 @@ public class GoogleController {
     public ResponseEntity<Response> process(@RequestBody String payload) throws IOException {
         logger.info("Receive google request payload = " + payload);
 
-        Request request = new ObjectMapper().readValue(payload, Request.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Request request = objectMapper.readValue(payload, Request.class);
 
         Response response = logic.processRequest(request);
-        logger.info("Send response = " + response);
+        logger.info("Send response = " + objectMapper.writeValueAsString(request));
 
         return responseHelper.ok(response);
     }
