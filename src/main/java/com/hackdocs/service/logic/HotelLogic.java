@@ -13,7 +13,7 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
 
     @Override
     public String process(Request request, Session<State> session) {
-        System.out.println(request.getQueryResult().getQueryText().toLowerCase());
+        logger.info("СЫРОЙ КВЕРИ ТЕКСТ ДЛЯ СТЕПЫ, ВОЗЬМИТЕ ПОЖАЛУЙСТА" + request.getQueryResult().getQueryText().toLowerCase());
         if (request.getQueryResult().getQueryText().toLowerCase().equals("cancel")) {
             session.setLogicState(State.INIT);
         }
@@ -158,7 +158,7 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
         if (lastName != null) {
             changeState(session, State.COUNTRY);
             session.getDocument().getFieldByType(LASTNAME).setValue(lastName);
-            return "Ok. Now, please enter a your address";
+            return "Ok. Now, please enter a your country";
         } else {
             return "This is not a last name. Try again";
         }
@@ -181,7 +181,7 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
         if (city != null) {
             changeState(session, State.CELL_PHONE);
             session.getDocument().getFieldByType(CITY).setValue(city);
-            return "Ok. Now, please enter a your home phone number";
+            return "Ok. Now, please enter a your cell phone number";
         } else {
             return "This is not a city. Try again";
         }
@@ -205,7 +205,7 @@ public class HotelLogic extends FlowLogic<HotelLogic.State> {
         if (email != null) {
             changeState(session, State.DEPARTURE_DATE);
             session.getDocument().getFieldByType(EMAIL).setValue(email);
-            return "Ok. Now, please enter a arrival date.";
+            return "Ok. Now, please enter a departure date.";
         } else {
             return "This is not an e-mail . Try again";
         }
