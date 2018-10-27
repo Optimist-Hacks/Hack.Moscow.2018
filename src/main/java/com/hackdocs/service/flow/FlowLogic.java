@@ -16,9 +16,9 @@ public abstract class FlowLogic<State extends Enum> {
     @Autowired
     private PdfService pdfService;
 
-    public String processRequest(Request request, Session<State> state) {
-        logger.info("Process state " + state);
-        return process(request, state);
+    public String processRequest(Request request, Session<State> session) {
+        logger.info("Process state " + session.getLogicState().name());
+        return process(request, session);
     }
 
     public void changeState(Session<State> state, State newState) {
