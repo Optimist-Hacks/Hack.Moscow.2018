@@ -10,6 +10,5 @@ public enum FieldModels {
 
     private final String[] keyWords;
     FieldModels(String[] keyWords) { this.keyWords = keyWords; }
-    public String[] getValues() { return keyWords; }
-    public String getValue(int index) { return keyWords[index]; }
+    public String[] getValues() { return keyWords;}
 }
