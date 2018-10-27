@@ -37,7 +37,7 @@ public class PdfService {
     private static final String PDF = "pdf";
     private static final String PNG = "png";
 
-    public String fillDocument(Document document) {
+    public Image fillDocument(Document document) {
         PdfStamper stamper = null;
         PdfReader reader;
         BaseFont font = null;
@@ -79,10 +79,13 @@ public class PdfService {
         }
 
         String fileName = path.getFileName().toString();
-        String imageName = saveImage(pdfToImage("/home/HackDocsBot/out_documents/" + fileName)).getFileName().toString();
         document.setPdf("https://techdrive.pro/api/v1/pdf/" + fileName);
+
+        Image image = pdfToImage("/home/HackDocsBot/out_documents/" + fileName);
+        String imageName = saveImage(image).getFileName().toString();
         document.setPng("http://techdrive.pro/api/v1/pdf/" + imageName);
-        return imageName;
+
+        return image;
     }
 
     private ArrayList<String> fieldLines(Field field) {
