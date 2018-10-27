@@ -17,5 +17,4 @@ public class QueryResult {
 //    DiagnosticInfo diagnosticInfo;
 //    String languageCode;
 
-
 }
