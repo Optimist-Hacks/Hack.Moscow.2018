@@ -33,5 +33,4 @@ public abstract class FlowLogic<State extends Enum> {
         return pdfService.fillDocument(session.getDocument());
     }
 
-
 }
