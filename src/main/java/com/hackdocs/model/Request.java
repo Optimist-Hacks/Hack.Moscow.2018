@@ -1,6 +1,5 @@
 package com.hackdocs.model;
 
-import com.hackdocs.model.request.OriginalDetectIntentRequest;
 import com.hackdocs.model.request.QueryResult;
 import lombok.Data;
 
@@ -10,6 +9,6 @@ public class Request {
     String responseId;
     String session;
     QueryResult queryResult;
-    OriginalDetectIntentRequest originalDetectIntentRequest;
+//    OriginalDetectIntentRequest originalDetectIntentRequest;
 
 }
