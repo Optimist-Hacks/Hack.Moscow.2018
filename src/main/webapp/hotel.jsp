@@ -23,6 +23,19 @@
 
 <body style="margin:50px">
 
+<%
+    if (HotelLogic.COMPLETED_DOCUMENTS.isEmpty()) {
+%>
+
+<h1>No registration yet =(</h1>
+<p align="center" style="margin-left: auto;margin-right: auto;">
+    <iframe src="https://giphy.com/embed/3d2wgrPNcBqocFzFbJ" width="960" height="540" frameBorder="0"
+            class="giphy-embed" allowFullScreen></iframe>
+</p>
+<%
+} else {
+%>
+
 <h1>Registered people</h1>
 
 <table class="table">
@@ -74,6 +87,8 @@
     %>
     </tbody>
 </table>
-
+<%
+    }
+%>
 </body>
 </html>
