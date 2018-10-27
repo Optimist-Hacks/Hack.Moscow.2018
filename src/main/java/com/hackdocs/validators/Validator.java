@@ -17,4 +17,6 @@ public class Validator {
     public static boolean isValidDate(String date){
         return true;
     }
+
+    public static boolean isValidFavoritePornField(String pornGenre) { return true; }
 }
