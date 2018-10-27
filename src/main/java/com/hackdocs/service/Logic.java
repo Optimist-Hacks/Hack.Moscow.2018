@@ -1,6 +1,7 @@
-package com.hackdocs.service.logic;
+package com.hackdocs.service;
 
 import com.github.otopba.javarocketstart.RocketText;
+import com.hackdocs.Flow;
 import com.hackdocs.model.Request;
 import com.hackdocs.model.Response;
 import com.hackdocs.model.response.Payload;
@@ -8,9 +9,8 @@ import com.hackdocs.model.response.payload.Google;
 import com.hackdocs.model.response.payload.google.RichResponse;
 import com.hackdocs.model.response.payload.google.richResponse.Item;
 import com.hackdocs.model.response.payload.google.richResponse.item.SimpleResponse;
-import com.hackdocs.service.SessionState;
 import com.hackdocs.service.flow.FlowLogic;
-import com.hackdocs.service.flow.Flow;
+import com.hackdocs.service.logic.VacationLogic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +28,11 @@ public class Logic {
 
     private final Map<String, SessionState> sessions = new HashMap<>();
 
-    private final FlowLogic vocationLogic;
+    private final VacationLogic vacationLogic;
 
     @Autowired
-    public Logic(FlowLogic vocationLogic) {
-        this.vocationLogic = vocationLogic;
+    public Logic(VacationLogic vacationLogic) {
+        this.vacationLogic = vacationLogic;
     }
 
     public Response processRequest(Request request) {
@@ -57,9 +57,9 @@ public class Logic {
             Flow flow = Flow.fromValue(text);
             if (flow != null) {
                 switch (flow) {
-                    case VOCATION:
-                        sessionState = new SessionState(vocationLogic.getInitState(), vocationLogic);
-                        response = vocationLogic.processRequest(text, sessionState);
+                    case VACATION:
+                        sessionState = new SessionState(vacationLogic.getInitState(), vacationLogic);
+                        response = vacationLogic.processRequest(text, sessionState);
                         break;
                 }
             }

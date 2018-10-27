@@ -6,7 +6,7 @@ import com.hackdocs.validators.Validator;
 import org.springframework.stereotype.Service;
 
 @Service
-public class VocationLogic extends FlowLogic<VocationLogic.State> {
+public class VacationLogic extends FlowLogic<VacationLogic.State> {
 
     @Override
     public String process(String text, SessionState<State> state) {
@@ -24,12 +24,12 @@ public class VocationLogic extends FlowLogic<VocationLogic.State> {
         return defaultResponse();
     }
 
-    private String handleInit(SessionState<VocationLogic.State> state) {
+    private String handleInit(SessionState<VacationLogic.State> state) {
         changeState(state, State.FIRST_NAME);
         return "Hello! You want to create vocation document. What is your name?";
     }
 
-    private String handleFirstName(String text, SessionState<VocationLogic.State> state) {
+    private String handleFirstName(String text, SessionState<VacationLogic.State> state) {
         if (!Validator.isValidFirstName(text)) {
             return "This is not a name. Try again";
         }
@@ -38,7 +38,7 @@ public class VocationLogic extends FlowLogic<VocationLogic.State> {
         return "Ok. Now, please enter last name";
     }
 
-    private String handleLastName(String text, SessionState<VocationLogic.State> state) {
+    private String handleLastName(String text, SessionState<VacationLogic.State> state) {
         if (!Validator.isValidSecondName(text)) {
             return "This is not a last name. Try again";
         }
@@ -47,7 +47,7 @@ public class VocationLogic extends FlowLogic<VocationLogic.State> {
         return "Ok. Now, please enter a date";
     }
 
-    private String handleDate(String text, SessionState<VocationLogic.State> state) {
+    private String handleDate(String text, SessionState<VacationLogic.State> state) {
         if (!Validator.isValidDate(text)) {
             return "This is not a date. Try again";
         }

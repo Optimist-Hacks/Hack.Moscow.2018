@@ -10,6 +10,7 @@ public class ValidatorTests {
     public void validateNameTest() {
         Assert.assertTrue(Validator.isValidFirstName("Ivan"));
         Assert.assertFalse(Validator.isValidFirstName("123"));
+        Assert.assertFalse(Validator.isValidFirstName("ivan"));
     }
 
 }

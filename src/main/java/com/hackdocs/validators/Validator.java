@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 public class Validator {
 
-    private static final Pattern firstNamePattern = Pattern.compile("[A-Z][a-zA-Z][^#&<>\\\"~;$^%{}?]{1,20}$");
-    private static final Pattern secondNamePattern = Pattern.compile("[A-Z][a-zA-Z][^#&<>\\\"~;$^%{}?]{1,20}$");
+    private static final Pattern firstNamePattern = Pattern.compile("[a-zA-Z][^#&<>\\\"~;$^%{}?]{1,20}$");
+    private static final Pattern secondNamePattern = Pattern.compile("[a-zA-Z][^#&<>\\\"~;$^%{}?]{1,20}$");
 
     public static boolean isValidFirstName(String firstName) {
         Matcher matcher = firstNamePattern.matcher(firstName);
