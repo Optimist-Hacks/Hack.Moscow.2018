@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.awt.*;
+
 public abstract class FlowLogic<State extends Enum> {
 
     protected static Logger logger = LoggerFactory.getLogger(FlowLogic.class);
@@ -27,9 +29,8 @@ public abstract class FlowLogic<State extends Enum> {
 
     public abstract State getInitState();
 
-    protected String buildPDF(Session<State> session) {
+    protected Image buildPDF(Session<State> session) {
         return pdfService.fillDocument(session.getDocument());
     }
-
 
 }
