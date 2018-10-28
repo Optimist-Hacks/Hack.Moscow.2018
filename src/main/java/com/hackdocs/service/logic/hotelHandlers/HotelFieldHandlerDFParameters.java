@@ -28,14 +28,16 @@ public class HotelFieldHandlerDFParameters {
     private Predicate<String> notEmprty = (s) -> s != null && !s.isEmpty();
 
     public String handleInit(Session<HotelLogic.State> session) {
-        changeState(session, HotelLogic.State.FIRST_NAME);
+        //changeState(session, HotelLogic.State.FIRST_NAME);
+        session.setLogicState(HotelLogic.State.FIRST_NAME);
         return "Hello! You want to create hotel check-in document. What is your name?";
     }
 
     public String handleFirstName(Request request, Session<HotelLogic.State> session) {
         String firstName = request.getQueryResult().getParameters().get("firstName");
         if (notEmprty.test(firstName)) {
-            changeState(session, HotelLogic.State.LAST_NAME);
+            //changeState(session, HotelLogic.State.LAST_NAME);
+            session.setLogicState(HotelLogic.State.LAST_NAME);
             session.getDocument().getFieldByType(NAME).setValue(firstName);
             logger.info("Я ЗАЛОГГИРОВАЛ ИМЯ ЛЮБИМОЕ ТВОЁ:  " + session.getDocument().getFieldByType(NAME).getValue());
             return "Ok. Now, please enter last name";
@@ -50,7 +52,8 @@ public class HotelFieldHandlerDFParameters {
         logger.info("LAST_NAME_HANDLE");
 
         if (notEmprty.test(lastName)) {
-            changeState(session, HotelLogic.State.COUNTRY);
+            //changeState(session, HotelLogic.State.COUNTRY);
+            session.setLogicState(HotelLogic.State.COUNTRY);
             session.getDocument().getFieldByType(LASTNAME).setValue(lastName);
             return "Ok. Now, please enter a your country";
         } else {
@@ -64,7 +67,8 @@ public class HotelFieldHandlerDFParameters {
 
         String country = request.getQueryResult().getParameters().get("country");
         if (notEmprty.test(country)) {
-            changeState(session, HotelLogic.State.CITY);
+            //changeState(session, HotelLogic.State.CITY);
+            session.setLogicState(HotelLogic.State.CITY);
             session.getDocument().getFieldByType(COUNTRY).setValue(country);
             return "Ok. Now, enter your city.";
         } else {
@@ -78,7 +82,8 @@ public class HotelFieldHandlerDFParameters {
 
         String city = request.getQueryResult().getParameters().get("city");
         if (notEmprty.test(city)) {
-            changeState(session, HotelLogic.State.CELL_PHONE);
+            //changeState(session, HotelLogic.State.CELL_PHONE);
+            session.setLogicState(HotelLogic.State.CELL_PHONE);
             session.getDocument().getFieldByType(CITY).setValue(city);
             return "Ok. Now, please enter a your cell phone number";
         } else {
@@ -91,7 +96,8 @@ public class HotelFieldHandlerDFParameters {
 
         String cellPhone = request.getQueryResult().getParameters().get("cellPhone");
         if (notEmprty.test(cellPhone)) {
-            changeState(session, HotelLogic.State.EMAIL);
+            //changeState(session, HotelLogic.State.EMAIL);
+            session.setLogicState(HotelLogic.State.EMAIL);
             session.getDocument().getFieldByType(CELL_PHONE).setValue(cellPhone);
             return "Ok. Now, please enter a your e-mail.";
         } else {
@@ -104,7 +110,8 @@ public class HotelFieldHandlerDFParameters {
 
         String email = request.getQueryResult().getParameters().get("email");
         if (notEmprty.test(email)) {
-            changeState(session, HotelLogic.State.DEPARTURE_DATE);
+            //changeState(session, HotelLogic.State.DEPARTURE_DATE);
+            session.setLogicState(HotelLogic.State.DEPARTURE_DATE);
             session.getDocument().getFieldByType(EMAIL).setValue(email);
             return "Ok. Now, please enter a departure date.";
         } else {
@@ -117,7 +124,8 @@ public class HotelFieldHandlerDFParameters {
 
         String depDate = request.getQueryResult().getParameters().get("depDate");
         if (notEmprty.test(depDate)) {
-            changeState(session, HotelLogic.State.DEPARTURE_TIME);
+            //changeState(session, HotelLogic.State.DEPARTURE_TIME);
+            session.setLogicState(HotelLogic.State.DEPARTURE_TIME);
             session.getDocument().getFieldByType(DEPARTURE_DATE).setValue(depDate);
             return "Ok. Now, please enter a departure time.";
         } else {
@@ -130,7 +138,8 @@ public class HotelFieldHandlerDFParameters {
 
         String depTime = request.getQueryResult().getParameters().get("depTime");
         if (notEmprty.test(depTime)) {
-            changeState(session, HotelLogic.State.TERMINATED);
+            //changeState(session, HotelLogic.State.TERMINATED);
+            session.setLogicState(HotelLogic.State.TERMINATED);
             session.getDocument().getFieldByType(DEPARTURE_TIME).setValue(depTime);
             String file = pdfService.fillDocument(session.getDocument());
             COMPLETED_DOCUMENTS.add(session.getDocument());
