@@ -65,7 +65,7 @@ public class Logic {
         String response;
         String queryText = request.getQueryResult().getQueryText();
         logger.info("Full text = " + queryText);
-
+        logger.info("HASH" + sessions.size());
         Session currSession = obtainSession(sessionId, queryText);
 
         if (currSession != null) {
