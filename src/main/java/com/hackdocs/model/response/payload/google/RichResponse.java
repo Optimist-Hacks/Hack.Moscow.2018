@@ -10,10 +10,10 @@ import java.util.List;
 @Data
 public class RichResponse extends Item {
 
-    public List<Item> itemSimpleResponses = new ArrayList<>();
+    public List<Item> items = new ArrayList<>();
 
     public RichResponse(Item itemSimpleResponse) {
-        this.itemSimpleResponses.add(itemSimpleResponse);
-        itemSimpleResponses.add(new Items());
+        this.items.add(itemSimpleResponse);
+        items.add(new Items());
     }
 }
