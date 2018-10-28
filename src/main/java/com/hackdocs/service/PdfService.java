@@ -94,7 +94,7 @@ public class PdfService {
         String value = field.getValue();
         if (field.getType() == FieldType.DEPARTURE_TIME) {
             value = DateUtils.formatTime(value);
-        } else if (field.getType() == FieldType.DEPARTURE_DATE) {
+        } else if (field.getType() == FieldType.DEPARTURE_DATE || field.getType() == FieldType.DATE_FROM || field.getType() == FieldType.DATE_TO) {
             value = DateUtils.formatDate(value);
         }
         for (int i = 0; i < field.getProperties().getNumbOfLines(); i++) {
