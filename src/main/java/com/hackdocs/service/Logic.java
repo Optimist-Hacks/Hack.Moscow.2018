@@ -58,18 +58,23 @@ public class Logic {
         if (RocketText.safeEqualsIgnoreCase(request.getOriginalDetectIntentRequest().getSource(), TELEGRAM)) {
             return buildTelegramResponse(response);
         } else {
-            String png = sessions.get(sessionId).getDocument().getPng();
-            String pdf = sessions.get(sessionId).getDocument().getPdf();
             Response response1 = buildGoogleResponse(response);
 
-            if (png != null) {
-                Items cardWrapper =  new Items();
+            try {
+                String png = sessions.get(sessionId).getDocument().getPng();
+                String pdf = sessions.get(sessionId).getDocument().getPdf();
 
-                cardWrapper.getBasicCard().getImage().setUrl(png);
-                cardWrapper.getBasicCard().getButtons().get(0).getOpenUrlAction().setUrl(pdf);
+                if (png != null) {
+                    Items cardWrapper = new Items();
 
-                response1.getPayload().getGoogle().getExpectedInputs().getInputPrompts()
-                        .get(0).getRichInitialPrompt().getItems().set(0, cardWrapper);
+                    cardWrapper.getBasicCard().getImage().setUrl(png);
+                    cardWrapper.getBasicCard().getButtons().get(0).getOpenUrlAction().setUrl(pdf);
+
+                    response1.getPayload().getGoogle().getExpectedInputs().getInputPrompts()
+                            .get(0).getRichInitialPrompt().getItems().set(0, cardWrapper);
+                }
+            } catch (Exception ignore) {
+
             }
 
             return response1;
@@ -110,10 +115,10 @@ public class Logic {
             if (flow != null) {
                 switch (flow) {
                     case VACATION:
-                        currSession = new Session(vacationLogic.getInitState(), vacationLogic,  DocumentBuilder.getHotelDocument());
+                        currSession = new Session(vacationLogic.getInitState(), vacationLogic, DocumentBuilder.getHotelDocument());
                         break;
                     case HOTEL:
-                        currSession = new Session(hotelLogic.getInitState(), hotelLogic,  DocumentBuilder.getHotelDocument());
+                        currSession = new Session(hotelLogic.getInitState(), hotelLogic, DocumentBuilder.getHotelDocument());
                         break;
                 }
             }
