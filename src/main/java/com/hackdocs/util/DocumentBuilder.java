@@ -54,11 +54,11 @@ public interface DocumentBuilder {
         ));
         fields.add(new Field(
                 FieldType.DEPARTURE_DATE,
-                new FieldProperties(160,532,1,30)
+                new FieldProperties(160,537,1,30)
         ));
         fields.add(new Field(
                 FieldType.DEPARTURE_TIME,
-                new FieldProperties(480,532,1,30)
+                new FieldProperties(480,537,1,30)
         ));
         fields.add(new Field(
                 FieldType.ARRIVAL_DATE,
@@ -86,29 +86,29 @@ public interface DocumentBuilder {
 
         fields.add(new Field(
                 FieldType.NAME,
-                new FieldProperties(175,660,1,30)
+                new FieldProperties(175,655,1,30)
         ));
         fields.add(new Field(
                 FieldType.LASTNAME,
-                new FieldProperties(190,640,1,30)
+                new FieldProperties(190,630,1,30)
         ));
         fields.add(new Field(
                 FieldType.DATE_FROM,
-                new FieldProperties(200,620,1,30)
+                new FieldProperties(200,608,1,30)
         ));
         fields.add(new Field(
                 FieldType.DATE_TO,
-                new FieldProperties(315,620,1,30)
+                new FieldProperties(315,608,1,30)
         ));
         fields.add(new Field(
                 FieldType.CURRENT_DATE,
                 dateFormat.format(date),
-                new FieldProperties(290,570,1,30)
+                new FieldProperties(290,560,1,30)
         ));
         fields.add(new Field(
                 FieldType.CURRENT_DATE,
                 dateFormat.format(date),
-                new FieldProperties(290,490,1,30)
+                new FieldProperties(290,475,1,30)
         ));
 
         vocationDoc.setFields(fields);

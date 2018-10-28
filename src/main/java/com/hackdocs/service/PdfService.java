@@ -163,7 +163,6 @@ public class PdfService {
                 PDDocument document = PDDocument.load(sourceFile);
                 @SuppressWarnings("unchecked")
                 List<PDPage> list = document.getDocumentCatalog().getAllPages();
-
                 String fileName = sourceFile.getName().replace(".pdf", "");
                 int pageNumber = 1;
                 for (PDPage page : list) {
