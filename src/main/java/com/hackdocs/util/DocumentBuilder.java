@@ -86,29 +86,29 @@ public interface DocumentBuilder {
 
         fields.add(new Field(
                 FieldType.NAME,
-                new FieldProperties(100,100,1,30)
+                new FieldProperties(175,660,1,30)
         ));
         fields.add(new Field(
                 FieldType.LASTNAME,
-                new FieldProperties(150,150,1,30)
+                new FieldProperties(190,640,1,30)
         ));
         fields.add(new Field(
                 FieldType.DATE_FROM,
-                new FieldProperties(200,200,1,30)
+                new FieldProperties(200,620,1,30)
         ));
         fields.add(new Field(
                 FieldType.DATE_TO,
-                new FieldProperties(250,250,1,30)
+                new FieldProperties(315,620,1,30)
         ));
         fields.add(new Field(
                 FieldType.CURRENT_DATE,
                 dateFormat.format(date),
-                new FieldProperties(300,300,1,30)
+                new FieldProperties(290,570,1,30)
         ));
         fields.add(new Field(
                 FieldType.CURRENT_DATE,
                 dateFormat.format(date),
-                new FieldProperties(350,350,1,30)
+                new FieldProperties(290,490,1,30)
         ));
 
         vocationDoc.setFields(fields);
