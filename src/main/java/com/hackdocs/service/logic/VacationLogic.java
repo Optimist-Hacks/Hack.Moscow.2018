@@ -94,7 +94,6 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
             changeState(session, State.TERMINATED);
             session.getDocument().getFieldByType(DATE_TO).setValue(dateTO);
             String file = pdfService.fillDocument(session.getDocument());
-            COMPLETED_DOCUMENTS.add(session.getDocument());
             return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/png/%s", file);
         } else {
             return "This is not a time. Try again";
