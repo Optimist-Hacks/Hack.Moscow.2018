@@ -15,7 +15,7 @@ public interface DocumentBuilder {
     static Document getHotelDocument() {
         ArrayList<Field> fields = new ArrayList<>();
         Document hotelDoc = new Document();
-        DateFormat dateFormat = new SimpleDateFormat("MM.dd");
+        DateFormat dateFormat = new SimpleDateFormat("MM.dd.yyyy");
         DateFormat timeFormat = new SimpleDateFormat("HH:mm");
         Date date = new Date();
 

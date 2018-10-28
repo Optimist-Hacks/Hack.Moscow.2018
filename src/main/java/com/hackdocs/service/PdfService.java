@@ -9,15 +9,15 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
-import org.ghost4j.document.PDFDocument;
-import org.ghost4j.renderer.RendererException;
-import org.ghost4j.renderer.SimpleRenderer;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -81,11 +81,11 @@ public class PdfService {
         String fileName = path.getFileName().toString();
         document.setPdf("https://techdrive.pro/api/v1/pdf/" + fileName);
 
-        //Image image = pdfToImage("/home/HackDocsBot/out_documents/" + fileName);
-        //String imageName = saveImage(image).getFileName().toString();
-        //document.setPng("http://techdrive.pro/api/v1/pdf/" + imageName);
+        Path imagePath = pdfToImage("/home/HackDocsBot/out_documents/" + fileName);
+        String imageName = imagePath.getFileName().toString();
+        document.setPng("http://techdrive.pro/api/v1/pdf/" + imageName);
 
-        return fileName;
+        return imageName;
     }
 
     private ArrayList<String> fieldLines(Field field) {
@@ -122,7 +122,7 @@ public class PdfService {
         return path.resolve(System.currentTimeMillis() + "." + PDF);
     }
 
-    private Path prepareImagePath() {
+    private static Path prepareImagePath() {
         Path path = Paths.get(OUT_FOLDER);
         if (!Files.exists(path)) {
             try {
@@ -149,29 +149,40 @@ public class PdfService {
         return path;
     }
 
-    public static void main(String[] args) {
-        pdfToImage("src/main/resources/pdf/application.pdf");
-    }
-
-    private static Image pdfToImage(String path) {
-
-        PDFDocument document = new PDFDocument();
+    private static Path pdfToImage(String path) {
         try {
-            document.load(new File(path));
-        } catch (IOException e) {
+            String sourcePath = path;
+            Path destPath = prepareImagePath();
+            String destinationPath = destPath.toString();
+            File sourceFile = new File(sourcePath);
+            File destinationFile = new File(destinationPath);
+            if (!destinationFile.exists()) {
+                System.out.println("Folder Created -> " + destinationFile.getAbsolutePath());
+            }
+            if (sourceFile.exists()) {
+                PDDocument document = PDDocument.load(sourceFile);
+                @SuppressWarnings("unchecked")
+                List<PDPage> list = document.getDocumentCatalog().getAllPages();
+
+                String fileName = sourceFile.getName().replace(".pdf", "");
+                int pageNumber = 1;
+                for (PDPage page : list) {
+                    BufferedImage image = page.convertToImage();
+                    File outputfile = new File(destinationPath);
+                    ImageIO.write(image, "png", outputfile);
+                    pageNumber++;
+                }
+                document.close();
+                System.out.println("Image saved at -> " + destinationFile.getAbsolutePath());
+            } else {
+                System.err.println(sourceFile.getName() + " File does not exist");
+            }
+
+            return destPath;
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-        SimpleRenderer renderer = new SimpleRenderer();
-        renderer.setResolution(300);
-        List<Image> images = new ArrayList<>();
-        try {
-            images = renderer.render(document);
-        } catch (IOException | RendererException | org.ghost4j.document.DocumentException e) {
-            e.printStackTrace();
-        }
-
-        return images.get(0);
+        return null;
     }
 
 }
