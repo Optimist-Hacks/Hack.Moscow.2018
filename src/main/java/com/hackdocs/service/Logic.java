@@ -70,7 +70,12 @@ public class Logic {
 
         if (currSession != null) {
             FlowLogic flow = currSession.getFlow();
-            response = flow.processRequest(request, currSession);
+            if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), "cancel")) {
+                sessions.remove(sessionId);
+                return "";
+            } else {
+                response = flow.processRequest(request, currSession);
+            }
         } else {
             response = processWelcomeMessage(sessionId);
         }
@@ -123,6 +128,7 @@ public class Logic {
         Telegram telegram = new Telegram(text);
         Payload payload = new Payload(telegram);
         FollowupEventInput followupEventInput = new FollowupEventInput();
+        followupEventInput.name = "Cell phone";
         return new Response(payload, followupEventInput);
     }
 
