@@ -70,8 +70,7 @@ public class Logic {
                     cardWrapper.getBasicCard().getImage().setUrl(png);
                     cardWrapper.getBasicCard().getButtons().get(0).getOpenUrlAction().setUrl(pdf);
 
-                    response1.getPayload().getGoogle().getExpectedInputs().getInputPrompts()
-                            .get(0).getRichInitialPrompt().getItems().set(0, cardWrapper);
+                    response1.getPayload().getGoogle().getRichResponse().getItems().set(0, cardWrapper);
                 }
             } catch (Exception ignore) {
 
