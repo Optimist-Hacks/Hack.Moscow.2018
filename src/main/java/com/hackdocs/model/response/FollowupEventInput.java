@@ -8,6 +8,7 @@ public class FollowupEventInput {
 
     public String name;
     public String languageCode;
+
     public Parameters parameters;
 
 }
