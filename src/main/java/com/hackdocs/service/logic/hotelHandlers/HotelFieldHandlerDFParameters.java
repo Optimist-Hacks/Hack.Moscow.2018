@@ -135,7 +135,7 @@ public class HotelFieldHandlerDFParameters {
             session.getDocument().getFieldByType(DEPARTURE_TIME).setValue(depTime);
             String file = pdfService.fillDocument(session.getDocument());
             COMPLETED_DOCUMENTS.add(session.getDocument());
-            return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/pdf/%s", file);
+            return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/png/%s", file);
         } else {
             return "This is not a time. Try again";
         }
