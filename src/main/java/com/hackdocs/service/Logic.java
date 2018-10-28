@@ -67,7 +67,7 @@ public class Logic {
 //                if (png != null) {
                     Items cardWrapper = new Items();
 
-                    cardWrapper.getBasicCard().getImage().setUrl("http://techdrive.pro/api/v1/png/11.png");
+                    cardWrapper.getBasicCard().getImage().setUrl("https://techdrive.pro/api/v1/png/11.png");
 //                    cardWrapper.getBasicCard().getButtons().get(0).getOpenUrlAction().setUrl(pdf);
 
                     response1.getPayload().getGoogle().getRichResponse().getItems().add(cardWrapper);
