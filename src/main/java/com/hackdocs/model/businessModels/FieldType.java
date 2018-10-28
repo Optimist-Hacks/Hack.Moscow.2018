@@ -15,6 +15,9 @@ public enum FieldType {
     EMAIL("e-mail"),
     DEPARTURE_DATE("departure date"),
     DEPARTURE_TIME("departure time"),
+    DATE_FROM(" start date"),
+    DATE_TO(" end date"),
+    CURRENT_DATE(""),
 
     /**
      * FOR PASSPORT

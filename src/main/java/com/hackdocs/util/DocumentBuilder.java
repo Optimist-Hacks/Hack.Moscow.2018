@@ -73,8 +73,48 @@ public interface DocumentBuilder {
 
         hotelDoc.setFields(fields);
         hotelDoc.setLineWidth(100);
-        hotelDoc.setFileLink("src/main/resources/pdf/application.pdf");
+        hotelDoc.setFileLink("src/main/resources/pdf/hotelApplication.pdf");
 
         return hotelDoc;
+    }
+
+    static Document getVocationDocument() {
+        ArrayList<Field> fields = new ArrayList<>();
+        Document vocationDoc = new Document();
+        DateFormat dateFormat = new SimpleDateFormat("MM.dd.yyyy");
+        Date date = new Date();
+
+        fields.add(new Field(
+                FieldType.NAME,
+                new FieldProperties(100,100,1,30)
+        ));
+        fields.add(new Field(
+                FieldType.LASTNAME,
+                new FieldProperties(100,100,1,30)
+        ));
+        fields.add(new Field(
+                FieldType.DATE_FROM,
+                new FieldProperties(100,100,1,30)
+        ));
+        fields.add(new Field(
+                FieldType.DATE_TO,
+                new FieldProperties(100,100,1,30)
+        ));
+        fields.add(new Field(
+                FieldType.CURRENT_DATE,
+                dateFormat.format(date),
+                new FieldProperties(100,100,1,30)
+        ));
+        fields.add(new Field(
+                FieldType.CURRENT_DATE,
+                dateFormat.format(date),
+                new FieldProperties(100,100,1,30)
+        ));
+
+        vocationDoc.setFields(fields);
+        vocationDoc.setLineWidth(100);
+        vocationDoc.setFileLink("src/main/resources/pdf/vocationApplication.pdf");
+
+        return vocationDoc;
     }
 }
