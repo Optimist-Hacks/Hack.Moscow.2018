@@ -70,7 +70,12 @@ public class Logic {
 
         if (currSession != null) {
             FlowLogic flow = currSession.getFlow();
-            response = flow.processRequest(request, currSession);
+            if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), "cancel")) {
+                sessions.remove(sessionId);
+                return "";
+            } else {
+                response = flow.processRequest(request, currSession);
+            }
         } else {
             response = processWelcomeMessage(sessionId);
         }
