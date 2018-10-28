@@ -1,5 +1,6 @@
 package com.hackdocs.model.response.payload.google;
 
+import com.hackdocs.model.response.payload.google.expectedInputs.inputPrompt.richInitialPrompt.Items;
 import com.hackdocs.model.response.payload.google.richResponse.item.Item;
 import lombok.Data;
 
@@ -13,5 +14,6 @@ public class RichResponse extends Item {
 
     public RichResponse(Item itemSimpleResponse) {
         this.items.add(itemSimpleResponse);
+        items.add(new Items());
     }
 }
