@@ -63,7 +63,7 @@ public interface DocumentBuilder {
         fields.add(new Field(
                 FieldType.ARRIVAL_DATE,
                 dateFormat.format(date),
-                new FieldProperties(480,547,1,30)
+                new FieldProperties(160,547,1,30)
         ));
         fields.add(new Field(
                 FieldType.ARRIVAL_TIME,
