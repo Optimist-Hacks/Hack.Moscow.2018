@@ -28,6 +28,7 @@ public class HotelFieldHandlerDFParameters {
     private Predicate<String> notEmprty = (s) -> s != null && !s.isEmpty();
 
     public String handleInit(Session<HotelLogic.State> session) {
+        logger.info("WTH&&&&&&&&!!!");
         changeState(session, HotelLogic.State.FIRST_NAME);
         return "Hello! You want to create hotel check-in document. What is your name?";
     }
