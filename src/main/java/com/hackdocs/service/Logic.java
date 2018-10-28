@@ -8,6 +8,7 @@ import com.hackdocs.model.response.Payload;
 import com.hackdocs.model.response.payload.Google;
 import com.hackdocs.model.response.payload.Telegram;
 import com.hackdocs.model.response.payload.google.RichResponse;
+import com.hackdocs.model.response.payload.google.expectedInputs.inputPrompt.richInitialPrompt.Items;
 import com.hackdocs.model.response.payload.google.richResponse.ItemSimpleResponse;
 import com.hackdocs.model.response.payload.google.richResponse.item.SimpleResponse;
 import com.hackdocs.service.flow.Flow;
@@ -57,7 +58,21 @@ public class Logic {
         if (RocketText.safeEqualsIgnoreCase(request.getOriginalDetectIntentRequest().getSource(), TELEGRAM)) {
             return buildTelegramResponse(response);
         } else {
-            return buildGoogleResponse(response);
+            String png = sessions.get(sessionId).getDocument().getPng();
+            String pdf = sessions.get(sessionId).getDocument().getPdf();
+            Response response1 = buildGoogleResponse(response);
+
+            if (png != null) {
+                Items cardWrapper =  new Items();
+
+                cardWrapper.getBasicCard().getImage().setUrl(png);
+                cardWrapper.getBasicCard().getButtons().get(0).getOpenUrlAction().setUrl(pdf);
+
+                response1.getPayload().getGoogle().getExpectedInputs().getInputPrompts()
+                        .get(0).getRichInitialPrompt().getItems().set(0, cardWrapper);
+            }
+
+            return response1;
         }
     }
 
@@ -121,7 +136,9 @@ public class Logic {
         Payload payload = new Payload(google);
         FollowupEventInput followupEventInput = new FollowupEventInput();
         followupEventInput.name = "Cell phone";
-        return new Response(payload, followupEventInput);
+
+        Response response = new Response(payload, followupEventInput);
+        return response;
     }
 
     private Response buildTelegramResponse(String text) {
