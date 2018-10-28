@@ -18,7 +18,7 @@ public class Response {
 
     public Response(Payload payload, FollowupEventInput followupEventInput) {
         this.payload = payload;
-        this.followupEventInput = followupEventInput;
+//        this.followupEventInput = followupEventInput;
     }
 
 }
