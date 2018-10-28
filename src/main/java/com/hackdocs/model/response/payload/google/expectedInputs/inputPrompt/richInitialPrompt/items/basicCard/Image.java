@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class Image {
 
-    String url = "https://example.google.com/42.png";
+    String url = "http://images.math.cnrs.fr/IMG/png/section8-image.png";
     String accessibilityText = "Image alternate text";
 }
