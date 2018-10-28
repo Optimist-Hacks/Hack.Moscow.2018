@@ -28,7 +28,7 @@ public class PngController {
     @RequestMapping(value = "{path}", method = RequestMethod.GET, produces = IMAGE_PNG)
     public byte[] getPng(@PathVariable String path) throws IOException {
         logger.info("Receive png request path = " + path);
-        Path document = pdfService.getDocument(path);
+        Path document = pdfService.getDocument("11.png");
         return Files.readAllBytes(document);
     }
 
