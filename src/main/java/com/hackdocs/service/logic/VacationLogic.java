@@ -76,7 +76,7 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
     public String handleDateFrom(Request request, Session<State> session) {
         logger.info("DATE_HANDLE");
 
-        String depDate = request.getQueryResult().getParameters().get("dateFrom");
+        String depDate = request.getQueryResult().getParameters().get("depDate");
         if (notEmprty.test(depDate)) {
             changeState(session, State.DATE_TO);
             session.getDocument().getFieldByType(DATE_FROM).setValue(depDate);
@@ -89,7 +89,7 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
     public String handleDateTo(Request request, Session<State> session) {
         logger.info("DATE_HANDLE");
 
-        String dateTO = request.getQueryResult().getParameters().get("dateTo");
+        String dateTO = request.getQueryResult().getParameters().get("depDate");
         if (notEmprty.test(dateTO)) {
             changeState(session, State.TERMINATED);
             session.getDocument().getFieldByType(DATE_TO).setValue(dateTO);
