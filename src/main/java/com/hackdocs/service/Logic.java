@@ -8,6 +8,7 @@ import com.hackdocs.model.response.Payload;
 import com.hackdocs.model.response.payload.Google;
 import com.hackdocs.model.response.payload.Telegram;
 import com.hackdocs.model.response.payload.google.RichResponse;
+import com.hackdocs.model.response.payload.google.expectedInputs.inputPrompt.richInitialPrompt.Items;
 import com.hackdocs.model.response.payload.google.richResponse.ItemSimpleResponse;
 import com.hackdocs.model.response.payload.google.richResponse.item.SimpleResponse;
 import com.hackdocs.service.flow.Flow;
@@ -59,21 +60,22 @@ public class Logic {
         } else {
             Response response1 = buildGoogleResponse(response);
 
-//            try {
-//                //String png = sessions.get(sessionId).getDocument().getPng();
-//                //String pdf = sessions.get(sessionId).getDocument().getPdf();
-//
-//                //if (png != null) {
-//                    Items cardWrapper = new Items();
-//
-//                    //cardWrapper.getBasicCard().getImage().setUrl(png);
-//                   // cardWrapper.getBasicCard().getButtons().get(0).getOpenUrlAction().setUrl(pdf);
-//
-//                    response1.getPayload().getGoogle().getRichResponse().getItems().set(0, cardWrapper);
-//                //}
-//            } catch (Exception ignore) {
-//
-//            }
+            try {
+                String png = sessions.get(sessionId).getDocument().getPng();
+                String pdf = sessions.get(sessionId).getDocument().getPdf();
+
+                if (png != null) {
+                    Items cardWrapper = new Items();
+
+                    cardWrapper.getBasicCard().getImage().setUrl(png);
+                    cardWrapper.getBasicCard().getButtons().get(0).getOpenUrlAction().setUrl(pdf);
+
+                    response1.getPayload().getGoogle().getRichResponse().getItems().add(cardWrapper);
+                    ((ItemSimpleResponse) response1.getPayload().getGoogle().getRichResponse().getItems().get(0)).getSimpleResponse().setTextToSpeech("DONE!");
+                }
+            } catch (Exception ignore) {
+
+            }
 
             return response1;
         }
