@@ -14,6 +14,7 @@ import com.hackdocs.service.flow.Flow;
 import com.hackdocs.service.flow.FlowLogic;
 import com.hackdocs.service.logic.HotelLogic;
 import com.hackdocs.service.logic.VacationLogic;
+import com.hackdocs.util.DocumentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,10 +95,10 @@ public class Logic {
             if (flow != null) {
                 switch (flow) {
                     case VACATION:
-                        currSession = new Session(vacationLogic.getInitState(), vacationLogic);
+                        currSession = new Session(vacationLogic.getInitState(), vacationLogic,  DocumentBuilder.getHotelDocument());
                         break;
                     case HOTEL:
-                        currSession = new Session(hotelLogic.getInitState(), hotelLogic);
+                        currSession = new Session(hotelLogic.getInitState(), hotelLogic,  DocumentBuilder.getHotelDocument());
                         break;
                 }
             }

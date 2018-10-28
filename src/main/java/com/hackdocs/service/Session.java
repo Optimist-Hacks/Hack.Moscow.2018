@@ -11,12 +11,12 @@ public class Session<State extends Enum> {
 
     private State logicState;
     private FlowLogic flow;
-    private Document document = DocumentBuilder.getHotelDocument();
+    private Document document;
 
-
-    public Session(State state, FlowLogic flow) {
+    public Session(State state, FlowLogic flow, Document document) {
         this.logicState = state;
         this.flow = flow;
+        this.document = document;
     }
 
 }
