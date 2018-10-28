@@ -1,13 +1,24 @@
 package com.hackdocs.service.logic;
 
 import com.hackdocs.model.Request;
+import com.hackdocs.service.PdfService;
 import com.hackdocs.service.Session;
 import com.hackdocs.service.flow.FlowLogic;
-import com.hackdocs.validators.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.function.Predicate;
+
+import static com.hackdocs.model.businessModels.FieldType.*;
+import static com.hackdocs.service.logic.HotelLogic.COMPLETED_DOCUMENTS;
 
 @Service
 public class VacationLogic extends FlowLogic<VacationLogic.State> {
+
+    @Autowired
+    private PdfService pdfService;
+
+    private Predicate<String> notEmprty = (s) -> s != null && !s.isEmpty();
 
     @Override
     protected String process(Request request, Session<State> state) {
@@ -15,11 +26,13 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
             case INIT:
                 return handleInit(state);
             case FIRST_NAME:
-                return handleFirstName(getRequestPlainText(request), state);
+                return handleFirstName(request, state);
             case LAST_NAME:
-                return handleLastName(getRequestPlainText(request), state);
-            case DATE:
-                return handleDate(getRequestPlainText(request), state);
+                return handleLastName(request, state);
+            case DATE_FROM:
+                return handleDepartureFrom(request, state);
+            case DATE_TO:
+                return handleDateTo(request, state);
         }
 
         return defaultResponse();
@@ -34,31 +47,58 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
         return "Hello! You want to create vacation document. What is your name?";
     }
 
-    private String handleFirstName(String text, Session<State> state) {
-        if (!Validator.isValidName(text)) {
+    public String handleFirstName(Request request, Session<State> session) {
+        String firstName = request.getQueryResult().getParameters().get("firstName");
+        if (notEmprty.test(firstName)) {
+            changeState(session, State.LAST_NAME);
+            session.getDocument().getFieldByType(NAME).setValue(firstName);
+            logger.info("Я ЗАЛОГГИРОВАЛ ИМЯ ЛЮБИМОЕ ТВОЁ:  " + session.getDocument().getFieldByType(NAME).getValue());
+            return "Ok. Now, please enter last name";
+        } else {
             return "This is not a name. Try again";
         }
-
-        changeState(state, State.LAST_NAME);
-        return "Ok. Now, please enter last name";
     }
 
-    private String handleLastName(String text, Session<State> state) {
-        if (!Validator.isValidName(text)) {
+    public String handleLastName(Request request, Session<State> session) {
+        String lastName = request.getQueryResult().getParameters().get("lastName");
+
+        logger.info("LAST_NAME_HANDLE");
+
+        if (notEmprty.test(lastName)) {
+            changeState(session, State.DATE_FROM);
+            session.getDocument().getFieldByType(LASTNAME).setValue(lastName);
+            return "Ok. Now, please enter a your country";
+        } else {
             return "This is not a last name. Try again";
         }
-
-        changeState(state, State.DATE);
-        return "Ok. Now, please enter a date";
     }
 
-    private String handleDate(String text, Session<State> state) {
-        if (!Validator.isValidDate(text)) {
+    public String handleDepartureFrom(Request request, Session<State> session) {
+        logger.info("DATE_HANDLE");
+
+        String depDate = request.getQueryResult().getParameters().get("dateFrom");
+        if (notEmprty.test(depDate)) {
+            changeState(session, State.DATE_TO);
+            session.getDocument().getFieldByType(DATE_FROM).setValue(depDate);
+            return "Ok. Now, please enter a departure time.";
+        } else {
             return "This is not a date. Try again";
         }
+    }
 
-        changeState(state, State.FIRST_NAME);
-        return "Ok. This is all. ";
+    public String handleDateTo(Request request, Session<State> session) {
+        logger.info("DATE_HANDLE");
+
+        String dateTO = request.getQueryResult().getParameters().get("dateTo");
+        if (notEmprty.test(dateTO)) {
+            changeState(session, State.TERMINATED);
+            session.getDocument().getFieldByType(DATE_TO).setValue(dateTO);
+            String file = pdfService.fillDocument(session.getDocument());
+            COMPLETED_DOCUMENTS.add(session.getDocument());
+            return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/png/%s", file);
+        } else {
+            return "This is not a time. Try again";
+        }
     }
 
     @Override
@@ -74,7 +114,9 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
         INIT,
         FIRST_NAME,
         LAST_NAME,
-        DATE
+        DATE_FROM,
+        DATE_TO,
+        TERMINATED
     }
 
 }
