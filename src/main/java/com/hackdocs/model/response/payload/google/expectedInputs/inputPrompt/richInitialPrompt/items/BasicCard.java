@@ -10,9 +10,9 @@ import java.util.List;
 @Data
 public class BasicCard {
 
-    String title = "Math & prime numbers";
+    String title = "Here is your application!";
 
-    String formattedText = "42 is an even composite number. It\n    is composed of three distinct prime numbeTo count fro";
+    String formattedText = "You can download pdf document below.";
     Image image = new Image();
 
     List<Button> buttons = Collections.singletonList(new Button());
