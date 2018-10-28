@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.awt.*;
 import java.util.function.Predicate;
 
 import static com.hackdocs.model.businessModels.FieldType.*;
@@ -106,6 +105,7 @@ public class HotelFieldHandlerPlainText {
         if (Validator.isValidTime(text)) {
             changeState(session, HotelLogic.State.TERMINATED);
             session.getDocument().getFieldByType(DEPARTURE_TIME).setValue(text);
+
             String file = pdfService.fillDocument(session.getDocument());
             return String.format("Ok. That's all folks! Here is your file:\nhttps://techdrive.pro/api/v1/pdf/%s", file);
         } else {

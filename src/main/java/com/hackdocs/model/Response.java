@@ -9,11 +9,11 @@ public class Response {
 
     Payload payload;
 
-//    String fulfillmentText;
+    //    String fulfillmentText;
 //    List<FulfillmentMessage> fulfillmentMessages;
 //    String source;
 //    List<OutputContext> outputContexts;
-FollowupEventInput followupEventInput;
+    FollowupEventInput followupEventInput;
 
 
     public Response(Payload payload, FollowupEventInput followupEventInput) {

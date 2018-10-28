@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class SimpleResponse {
 
-    public String textToSpeech = "http://images.math.cnrs.fr/IMG/png/section8-image.png";
+    public String textToSpeech;
 
     public SimpleResponse(String textToSpeech) {
-//        this.textToSpeech = textToSpeech;
+        this.textToSpeech = textToSpeech;
     }
 
 }
