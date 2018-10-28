@@ -30,7 +30,7 @@ public class Logic {
     private static final String GOOGLE_ASSISTANT_WELCOME = "GOOGLE_ASSISTANT_WELCOME";
     private static final String TELEGRAM = "telegram";
 
-    private final Map<String, Session> sessions = new HashMap<>();
+    private Map<String, Session> sessions = new HashMap<>();
 
     private final VacationLogic vacationLogic;
 
