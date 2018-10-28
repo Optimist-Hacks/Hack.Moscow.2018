@@ -110,7 +110,7 @@ public class Logic {
             if (flow != null) {
                 switch (flow) {
                     case VACATION:
-                        currSession = new Session(vacationLogic.getInitState(), vacationLogic,  DocumentBuilder.getHotelDocument());
+                        currSession = new Session(vacationLogic.getInitState(), vacationLogic,  DocumentBuilder.getVocationDocument());
                         break;
                     case HOTEL:
                         currSession = new Session(hotelLogic.getInitState(), hotelLogic,  DocumentBuilder.getHotelDocument());
