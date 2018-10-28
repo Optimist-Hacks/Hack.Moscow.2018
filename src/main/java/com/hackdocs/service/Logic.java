@@ -61,17 +61,17 @@ public class Logic {
             Response response1 = buildGoogleResponse(response);
 
             try {
-                String png = sessions.get(sessionId).getDocument().getPng();
-                String pdf = sessions.get(sessionId).getDocument().getPdf();
+                //String png = sessions.get(sessionId).getDocument().getPng();
+                //String pdf = sessions.get(sessionId).getDocument().getPdf();
 
-                if (png != null) {
+                //if (png != null) {
                     Items cardWrapper = new Items();
 
-                    cardWrapper.getBasicCard().getImage().setUrl(png);
-                    cardWrapper.getBasicCard().getButtons().get(0).getOpenUrlAction().setUrl(pdf);
+                    //cardWrapper.getBasicCard().getImage().setUrl(png);
+                   // cardWrapper.getBasicCard().getButtons().get(0).getOpenUrlAction().setUrl(pdf);
 
                     response1.getPayload().getGoogle().getRichResponse().getItems().set(0, cardWrapper);
-                }
+                //}
             } catch (Exception ignore) {
 
             }
