@@ -8,7 +8,7 @@ import com.hackdocs.model.response.Payload;
 import com.hackdocs.model.response.payload.Google;
 import com.hackdocs.model.response.payload.Telegram;
 import com.hackdocs.model.response.payload.google.RichResponse;
-import com.hackdocs.model.response.payload.google.richResponse.Item;
+import com.hackdocs.model.response.payload.google.richResponse.ItemSimpleResponse;
 import com.hackdocs.model.response.payload.google.richResponse.item.SimpleResponse;
 import com.hackdocs.service.flow.Flow;
 import com.hackdocs.service.flow.FlowLogic;
@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -115,8 +114,8 @@ public class Logic {
 
     private Response buildGoogleResponse(String text) {
         SimpleResponse simpleResponse = new SimpleResponse(text);
-        Item item = new Item(simpleResponse);
-        RichResponse richResponse = new RichResponse(Collections.singletonList(item));
+        ItemSimpleResponse itemSimpleResponse = new ItemSimpleResponse(simpleResponse);
+        RichResponse richResponse = new RichResponse(itemSimpleResponse);
         Google google = new Google(true, richResponse);
         Payload payload = new Payload(google);
         FollowupEventInput followupEventInput = new FollowupEventInput();
