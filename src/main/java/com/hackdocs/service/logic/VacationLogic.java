@@ -30,7 +30,7 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
             case LAST_NAME:
                 return handleLastName(request, state);
             case DATE_FROM:
-                return handleDepartureFrom(request, state);
+                return handleDateFrom(request, state);
             case DATE_TO:
                 return handleDateTo(request, state);
         }
@@ -67,20 +67,20 @@ public class VacationLogic extends FlowLogic<VacationLogic.State> {
         if (notEmprty.test(lastName)) {
             changeState(session, State.DATE_FROM);
             session.getDocument().getFieldByType(LASTNAME).setValue(lastName);
-            return "Ok. Now, please enter a your country";
+            return "Ok. Now, please enter a date from";
         } else {
             return "This is not a last name. Try again";
         }
     }
 
-    public String handleDepartureFrom(Request request, Session<State> session) {
+    public String handleDateFrom(Request request, Session<State> session) {
         logger.info("DATE_HANDLE");
 
         String depDate = request.getQueryResult().getParameters().get("dateFrom");
         if (notEmprty.test(depDate)) {
             changeState(session, State.DATE_TO);
             session.getDocument().getFieldByType(DATE_FROM).setValue(depDate);
-            return "Ok. Now, please enter a departure time.";
+            return "Ok. Now, please enter a date to";
         } else {
             return "This is not a date. Try again";
         }
