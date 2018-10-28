@@ -83,7 +83,7 @@ public class PdfService {
 
         Path imagePath = pdfToImage("/home/HackDocsBot/out_documents/" + fileName);
         String imageName = imagePath.getFileName().toString();
-        document.setPng("http://techdrive.pro/api/v1/pdf/" + imageName);
+        document.setPng("http://techdrive.pro/api/v1/png/" + imageName);
 
         return imageName;
     }
