@@ -57,12 +57,6 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <version>${app.spring.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${app.spring.version}</version>
         </dependency>
@@ -133,18 +127,12 @@
             <artifactId>tomcat-embed-jasper</artifactId>
             <version>9.0.10</version>
         </dependency>
+
         <dependency>
             <groupId>org.ghost4j</groupId>
             <artifactId>ghost4j</artifactId>
             <version>1.0.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.pdfbox</groupId>
-            <artifactId>pdfbox</artifactId>
-            <version>1.8.3</version>
-        </dependency>
-
 
     </dependencies>
 
