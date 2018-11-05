@@ -3,14 +3,8 @@ package com.hackdocs.service;
 import com.github.otopba.javarocketstart.RocketText;
 import com.hackdocs.model.Request;
 import com.hackdocs.model.Response;
-import com.hackdocs.model.response.FollowupEventInput;
-import com.hackdocs.model.response.Payload;
-import com.hackdocs.model.response.payload.Google;
-import com.hackdocs.model.response.payload.Telegram;
-import com.hackdocs.model.response.payload.google.RichResponse;
 import com.hackdocs.model.response.payload.google.expectedInputs.inputPrompt.richInitialPrompt.Items;
 import com.hackdocs.model.response.payload.google.richResponse.ItemSimpleResponse;
-import com.hackdocs.model.response.payload.google.richResponse.item.SimpleResponse;
 import com.hackdocs.service.flow.Flow;
 import com.hackdocs.service.flow.FlowLogic;
 import com.hackdocs.service.logic.HotelLogic;
@@ -24,11 +18,17 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.github.otopba.javarocketstart.RocketText.safeEqualsIgnoreCase;
+import static com.hackdocs.model.Response.buildGoogleResponse;
+import static com.hackdocs.model.Response.buildTelegramResponse;
+
 @Service
 public class Logic {
 
+    private static final String DEFAULT_WRONG_TEXT = "Please call Alexander!!!";
     private static Logger logger = LoggerFactory.getLogger(Logic.class);
     private static final String GOOGLE_ASSISTANT_WELCOME = "GOOGLE_ASSISTANT_WELCOME";
+    private static final String DEFAULT_WELCOME_TEXT = "Hello! This is our cool bot. Please choose document:\n-Vacation\n-Hotel";
     private static final String TELEGRAM = "telegram";
 
     private Map<String, Session> sessions = new HashMap<>();
@@ -48,14 +48,14 @@ public class Logic {
         logger.info("Session = " + sessionId);
 
         String response;
-        if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME)) {
+        if (safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), GOOGLE_ASSISTANT_WELCOME)) {
             logger.info(GOOGLE_ASSISTANT_WELCOME);
             response = processWelcomeMessage(sessionId);
         } else {
             response = processDataMessage(request, sessionId);
         }
 
-        if (RocketText.safeEqualsIgnoreCase(request.getOriginalDetectIntentRequest().getSource(), TELEGRAM)) {
+        if (safeEqualsIgnoreCase(request.getOriginalDetectIntentRequest().getSource(), TELEGRAM)) {
             return buildTelegramResponse(response);
         } else {
             Response response1 = buildGoogleResponse(response);
@@ -90,7 +90,7 @@ public class Logic {
 
         if (currSession != null) {
             FlowLogic flow = currSession.getFlow();
-            if (RocketText.safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), "cancel")) {
+            if (safeEqualsIgnoreCase(request.getQueryResult().getQueryText(), "cancel")) {
                 sessions.remove(sessionId);
                 return "";
             } else {
@@ -101,7 +101,7 @@ public class Logic {
         }
 
         if (RocketText.isEmpty(response)) {
-            response = defaultWrongText();
+            response = DEFAULT_WRONG_TEXT;
         }
 
         return response;
@@ -129,43 +129,13 @@ public class Logic {
         } else {
             logger.info("We already have this session");
         }
-
         return currSession;
-    }
-
-    private Response buildGoogleResponse(String text) {
-        SimpleResponse simpleResponse = new SimpleResponse(text);
-        ItemSimpleResponse itemSimpleResponse = new ItemSimpleResponse(simpleResponse);
-        RichResponse richResponse = new RichResponse(itemSimpleResponse);
-        Google google = new Google(true, richResponse);
-        Payload payload = new Payload(google);
-        FollowupEventInput followupEventInput = new FollowupEventInput();
-        followupEventInput.name = "Cell phone";
-
-        Response response = new Response(payload, followupEventInput);
-        return response;
-    }
-
-    private Response buildTelegramResponse(String text) {
-        Telegram telegram = new Telegram(text);
-        Payload payload = new Payload(telegram);
-        FollowupEventInput followupEventInput = new FollowupEventInput();
-        followupEventInput.name = "Cell phone";
-        return new Response(payload, followupEventInput);
-    }
-
-    private String defaultWelcomeText() {
-        return "Hello! This is our cool bot. Please choose document:\n-Vacation\n-Hotel";
-    }
-
-    private String defaultWrongText() {
-        return "Please call Alexander!!!";
     }
 
     private String processWelcomeMessage(String sessionId) {
         logger.info("Remove session " + sessionId);
         sessions.remove(sessionId);
-        return defaultWelcomeText();
+        return DEFAULT_WELCOME_TEXT;
     }
 
 }
